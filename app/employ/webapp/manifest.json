@@ -1,0 +1,135 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "employ",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.18.0",
+      "toolsId": "f1736fcf-d1f6-4707-9341-bb4d45121880"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/employee/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.136.2",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "employ.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "employ.view",
+        "async": true,
+        "viewPath": "employ.view"
+      },
+    "routes": [
+        {
+          "pattern": "",
+          "name": "list",
+          "target": "list"
+        },
+        {
+          "pattern": "employee/{employeeId}",
+          "name": "detail",
+          "target": "detail"
+        },
+        {
+          "pattern": "leave/{employeeId}",
+          "name": "leave",
+          "target": "leave"
+        }
+      ],
+      "targets": {
+        "list": {
+          "viewName": "List",
+          "viewId": "list",
+          "viewLevel": 1
+        },
+        "detail": {
+          "viewName": "Detail",
+          "viewId": "detail",
+          "viewLevel": 2
+        },
+        "leave": {
+          "viewName": "Leave",
+          "viewId": "leave",
+          "viewLevel": 2
+        }
+    },
+    "rootView": {
+      "viewName": "employ.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  }
+}

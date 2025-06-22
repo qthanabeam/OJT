@@ -17,12 +17,16 @@
     "@cap-js/sqlite": "^1",
     "@sap/cds-dk": "^8",
     "@sap/ui5-builder": "^3",
-    "@ui5/cli": "^3"
+    "@ui5/cli": "^3",
+    "rimraf": "^5.0.5",
+    "mbt": "^1.2.29"
   },
   "scripts": {
     "start": "cds-serve",
-    "build": "cds build && ui5 build --include-task=generateManifestBundle",
-    "deploy": "mbt build && cf deploy mta_archives/ojt_employ_1.0.0.mtar"
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+    "watch-employ": "cds watch --open employ/webapp/index.html?sap-ui-xx-viewCache=false",
+    "undeploy": "cf undeploy ojt_employ --delete-services --delete-service-keys --delete-service-brokers"
   },
   "cds": {
     "requires": {
