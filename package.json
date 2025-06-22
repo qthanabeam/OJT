@@ -1,27 +1,33 @@
 {
   "name": "ojt_employ",
   "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
+  "description": "Employee Management Application on SAP BTP",
+  "repository": "https://github.com/your-username/employee-management",
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
     "@sap/cds": "^8",
-    "express": "^4",
     "@sap/xssec": "^4",
-    "@cap-js/hana": "^1"
+    "@cap-js/hana": "^1",
+    "express": "^4",
+    "passport": "^0.7"
   },
   "devDependencies": {
     "@cap-js/cds-types": "^0.10.0",
     "@cap-js/sqlite": "^1",
-    "@sap/cds-dk": "^8"
+    "@sap/cds-dk": "^8",
+    "@sap/ui5-builder": "^3",
+    "@ui5/cli": "^3"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "build": "cds build && ui5 build --include-task=generateManifestBundle",
+    "deploy": "mbt build && cf deploy mta_archives/ojt_employ_1.0.0.mtar"
   },
   "cds": {
     "requires": {
-      "auth": "xsuaa"
+      "auth": "xsuaa",
+      "db": "hana"
     },
     "sql": {
       "native_hana_associations": false

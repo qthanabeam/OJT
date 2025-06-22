@@ -1,66 +1,36 @@
-using { Currency, managed, cuid } from '@sap/cds/common';
+namespace ojt_employ;
 
-namespace employee.management;
+using { managed, cuid} from '@sap/cds/common';
 
-entity Roles : cuid, managed {
-  name : String(100) @title: 'Tên Vai Trò';
-  baseSalary : Decimal(15,2) @title: 'Lương Cơ Bản';
-  allowance : Decimal(15,2) @title: 'Phụ Cấp' default 0;
-  employees : Association to many Employees on employees.role = $self;
+entity Roles : managed {
+  key ID          : UUID;
+      name        : String(50);
+      baseSalary  : Decimal(10,2);
+      allowance   : Decimal(10,2) default 0;
 }
 
-entity Departments : cuid, managed {
-  name : String(100) @title: 'Tên Phòng Ban';
-  employees : Association to many Employees on employees.department = $self;
+entity Departments : managed {
+  key ID          : UUID;
+      name        : String(50);
 }
 
-entity Employees : cuid, managed {
-  firstName : String(50) @title: 'Tên' @mandatory;
-  lastName : String(50) @title: 'Họ' @mandatory;
-  dateOfBirth : Date @title: 'Ngày Sinh';
-  gender : String(10) @title: 'Giới Tính';
-  email : String(100) @title: 'Email' @mandatory;
-  hireDate : Date @title: 'Ngày Vào Làm' @mandatory;
-  salary : Decimal(15,2) @title: 'Lương' @readonly;
-  performanceRating : Integer @title: 'Xếp Hạng Hiệu Suất' default 3;
-  
-  // Associations
-  role : Association to Roles @title: 'Vai Trò' @mandatory;
-  department : Association to Departments @title: 'Phòng Ban' @mandatory;
-  leaveRequests : Association to many LeaveRequests on leaveRequests.employee = $self;
+entity Employees : managed, cuid {
+      firstName   : String(50);
+      lastName    : String(50);
+      dateOfBirth : Date;
+      gender      : String(10);
+      email       : String(100);
+      hireDate    : Date;
+      salary      : Decimal(10,2);
+      role        : Association to one Roles;
+      department  : Association to one Departments;
+      performanceRating : Integer default 1; // 1-5
 }
 
-entity LeaveRequests : cuid, managed {
-  employee : Association to Employees @title: 'Nhân Viên' @mandatory;
-  startDate : Date @title: 'Ngày Bắt Đầu' @mandatory;
-  endDate : Date @title: 'Ngày Kết Thúc' @mandatory;
-  status : String(20) @title: 'Trạng Thái' default 'Pending';
-  reason : String(500) @title: 'Lý Do';
+entity LeaveRequests : managed, cuid {
+      employee    : Association to one Employees;
+      startDate   : Date;
+      endDate     : Date;
+      status      : String(20) default 'Pending';
+      reason      : String(255);
 }
-
-// Views for better data access
-view EmployeeDetails as select from Employees {
-  *,
-  role.name as roleName,
-  role.baseSalary,
-  role.allowance,
-  department.name as departmentName
-};
-
-// Annotations for UI
-annotate Employees with {
-  ID @title: 'ID';
-  firstName @title: 'Tên';
-  lastName @title: 'Họ';
-};
-
-annotate Roles with {
-  ID @title: 'ID';
-  name @title: 'Tên Vai Trò';
-  baseSalary @title: 'Lương Cơ Bản';
-};
-
-annotate Departments with {
-  ID @title: 'ID';
-  name @title: 'Tên Phòng Ban';
-};
