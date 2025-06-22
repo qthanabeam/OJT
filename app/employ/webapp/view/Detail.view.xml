@@ -1,0 +1,64 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:f="sap.ui.layout.form"
+  controllerName="ojt.employers.controller.EmployerDetailController"
+  <Page title="{i18n>detailTitle}" showNavButton="true" navButtonPress="onNavBack">
+    <content>
+      <f:SimpleForm
+        id="employeeForm"
+        editable="true"
+        <layout>
+          <f:layoutColumnLayout/>
+        </layout>
+        <f:content>
+          <Label text="First Name"/>
+          <Input value="{firstName}"/>
+          <Label text="Last Name"/>
+          <Input value="{lastName}"/>
+          <Label text="Date of Birth"/>
+          <DatePicker value="{dateOfBirth}"/>
+          <Label text="Gender"/>
+            <Input value="{gender}"/>
+          <Label text="Email"/>
+            <Input value="{email}"/>
+          <Label text="Hire Date"/>
+            <DatePicker value="{hireDate}"/>
+          <Label text="Role"/>
+          <ComboBox items="{/Roles}">
+            <items>
+              <core:Item key="{ID}" text="{name}"/>
+            </items>
+            <value="{role/ID}"/>
+          </ComboBox>
+          <Label text="Department"/>
+          <ComboBox items="{/Departments}">
+            <items>
+              <core:Item key="{ID}" text="{name}"/>
+            </items>
+            <value="{department/ID}"/>
+          </ComboBox>
+          <Label text="Performance Rating"/>
+            <Input value="{performanceRating}"/>
+          <Label text="Salary"/>
+          <Input value="{salary}" editable="false}"/>
+        </f:content>
+      </f:SimpleForm>
+      <Button
+        text="{i18n>calculateSalary}"
+        press="onCalculateSalary"
+        visible="{user>/isAdmin}"/>
+      <Button
+        text="{i18n>save}"
+        press="onSave"
+        visible="{user>/isAdmin}"/>
+      <Button
+        text="{i18n>delete}"
+        press="onDelete"
+        visible="{user>/isAdmin}"/>
+      <Button
+        text="Manage Leaves"
+        press="onManageLeaves"/>
+    </content>
+  </Page>
+</mvc:View>

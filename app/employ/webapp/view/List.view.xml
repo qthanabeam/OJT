@@ -1,6 +1,61 @@
-<mvc:View controllerName="employ.controller.List"
+<mvc:View
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
+    xmlns="sap.m"
+    controllerName="ojt.employers.controller.EmployersController"
+    displayBlock="true"
+>
+    <Page title="{i18n>listTitle}">
+        <content>
+            <Table
+                id="employeeTable"
+                items="{/Employees}"
+            >
+                <headerToolbar>
+                    <Toolbar>
+                        <Title text="Employees" />
+                        <ToolbarSpacer />
+                        <Button
+                            text="{i18n>onboardEmployee}"
+                            icon="sap-icon://add-employee"
+                            press="onAddEmployee"
+                            visible="{user>/isAdmin}"
+                        />
+                    </Toolbar>
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="Full Name" />
+                    </th>
+                    <Column text="Role" />
+                    <Column>
+                        <Text text="Department Name" />
+                    </th>
+                    <Column>
+                        <Text text="Email" />
+                    </th>
+                    <Column
+                        width="Actions"
+                        width="10%"
+                    >
+                        <Text text="Actions" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem press="onItemPress">
+                        <cells>
+                            <Text text="{firstName} {lastName}" />
+                            <Text text="{role/name}" />
+                            <Text text="{department/name}" />
+                            <Text text="{email}" />
+                            <Button
+                                icon="sap-icon-delete"
+                                press="onDelete"
+                                visible="{user>/isAdmin}"
+                            />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
     </Page>
 </mvc:View>

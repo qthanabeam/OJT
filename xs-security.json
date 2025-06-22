@@ -27,5 +27,9 @@
       ]
     }
   ],
+  "oauth2-configuration": {
+  "redirect-uris": [
+   ["https://*.applicationstudio.cloud.sap/**" ]
+  ],
   "attributes": []
 }

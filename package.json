@@ -2,7 +2,7 @@
   "name": "ojt_employ",
   "version": "1.0.0",
   "description": "Employee Management Application on SAP BTP",
-  "repository": "https://github.com/your-username/employee-management",
+  "repository": "https://github.com/qthanabeam/OJT.git",
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
@@ -31,7 +31,10 @@
   "cds": {
     "requires": {
       "auth": "xsuaa",
-      "db": "hana"
+      "db": "hana",
+      "[hybrid]": {
+        "auth": "xsuaa"
+      }
     },
     "sql": {
       "native_hana_associations": false
