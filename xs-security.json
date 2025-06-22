@@ -1,6 +1,26 @@
 {
-  "scopes": [],
-  "attributes": [],
-  "role-templates": [],
-  "authorities-inheritance": false
+  "xsappname": "ojt_employ",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Admin",
+      "description": "Admin access"
+    },
+    {
+      "name": "$XSAPPNAME.Viewer",
+      "description": "Viewer access"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Admin",
+      "description": "Admin role for full access",
+      "scope-references": ["$XSAPPNAME.Admin"]
+    },
+    {
+      "name": "Viewer",
+      "description": "Viewer role for read-only access",
+      "scope-references": ["$XSAPPNAME.Viewer"]
+    }
+  ]
 }
