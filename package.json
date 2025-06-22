@@ -28,16 +28,31 @@
     "watch-employ": "cds watch --open employ/webapp/index.html?sap-ui-xx-viewCache=false",
     "undeploy": "cf undeploy ojt_employ --delete-services --delete-service-keys --delete-service-brokers"
   },
-  "cds": {
-    "requires": {
-      "auth": "xsuaa",
-      "db": "hana",
-      "[hybrid]": {
-        "auth": "xsuaa"
+"cds": {
+  "requires": {
+    "auth": {
+      "[development]": {
+        "kind": "mocked"
+      },
+      "[production]": {
+        "kind": "xsuaa"
       }
     },
-    "sql": {
-      "native_hana_associations": false
+    "db": {
+      "[development]": {
+        "kind": "sqlite",
+        "database": ":memory:"
+      },
+      "[production]": {
+        "kind": "hana"
+      }
+    },
+    "[hybrid]": {
+      "auth": "xsuaa"
     }
+  },
+  "sql": {
+    "native_hana_associations": false
   }
+}
 }

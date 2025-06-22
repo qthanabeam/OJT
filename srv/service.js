@@ -13,7 +13,9 @@ module.exports = cds.service.impl(async function() {
   // Calculate salary
   this.on('calculateSalary', async (req) => {
     const { employeeID } = req.data;
-    const employee = await SELECT.one.from(Employees).where({ ID: employeeID }).columns('*', { role: { '*' } });
+   const employee = await SELECT.one.from(Employees)
+  .where({ ID: employeeID })
+  .columns('*', { role: ['*'] });
     if (!employee) req.error(404, 'Employee not found');
 
     const yearsOfService = getYearsOfService(employee.hireDate);
