@@ -1,34 +1,42 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
-    "employ/model/models"
-], (UIComponent, models) => {
+    "sap/ui/Device",
+    "sap/ui/model/json/JSONModel"
+], function (UIComponent, Device, JSONModel) {
     "use strict";
 
     return UIComponent.extend("employ.Component", {
         metadata: {
             manifest: "json",
-            interfaces: [
-                "sap.ui.core.IAsyncContentCreation"
-            ]
+            interfaces: ["sap.ui.core.IAsyncContentCreation"]
         },
 
-         init: function() {
-      UIComponent.prototype.init.apply(this, arguments);
-      
-      // Initialize user model
-      var oUserModel = new JSONModel({
-        isAdmin: false
-      });
-      this.setModel(oUserModel, "user");
+        init: function () {
+            // Call the base component's init function
+            UIComponent.prototype.init.apply(this, arguments);
 
-      // Check user role
-      var oJwt = sap.ui.getCore().getConfiguration().getXsuaaToken();
-      if (oJwt && oJwt.scope.includes("Admin")) {
-        oUserModel.setProperty("/isAdmin", true);
-      }
+            // Initialize the router
+            this.getRouter().initialize();
 
-      // Initialize router
-      this.getRouter().initialize();
-    }
+            // Set device model
+            var oDeviceModel = new JSONModel(Device);
+            oDeviceModel.setDefaultBindingMode("OneWay");
+            this.setModel(oDeviceModel, "device");
+
+            // Set user model
+            var oUserModel = new JSONModel({
+                isAdmin: false // Default to Viewer role
+            });
+            this.setModel(oUserModel, "user");
+
+            // Check user role (XSUAA integration)
+            this._checkUserRole();
+        },
+
+        _checkUserRole: function () {
+            var oUserModel = this.getModel("user");
+            var bIsAdmin = false; // Simulate Viewer role for now
+            oUserModel.setProperty("/isAdmin", bIsAdmin);
+        }
     });
 });

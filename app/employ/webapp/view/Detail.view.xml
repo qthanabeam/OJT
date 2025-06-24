@@ -3,7 +3,7 @@
     xmlns="sap.m"
     xmlns:f="sap.ui.layout.form"
     xmlns:core="sap.ui.core"
-    controllerName="ojt.employers.controller.EmployerDetailController"
+    controllerName="ojt.employ.controller.Detail"
 >
     <Page
         id="_IDGenPage"
