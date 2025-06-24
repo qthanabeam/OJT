@@ -23,6 +23,7 @@
   },
   "scripts": {
     "start": "cds-serve",
+    "start-ui": "cd app/employ && npx ui5 serve --config ui5.yaml --open index.html",
     "build": "rimraf resources mta_archives && mbt build --mtar archive",
     "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
     "watch-employ": "cds watch --open employ/webapp/index.html?sap-ui-xx-viewCache=false",

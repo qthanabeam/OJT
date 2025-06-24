@@ -4,17 +4,24 @@
     controllerName="ojt.employers.controller.EmployersController"
     displayBlock="true"
 >
-    <Page title="{i18n>listTitle}">
+    <Page
+        id="_IDGenPage1"
+        title="{i18n>listTitle}"
+    >
         <content>
             <Table
                 id="employeeTable"
                 items="{/Employees}"
             >
                 <headerToolbar>
-                    <Toolbar>
-                        <Title text="Employees" />
-                        <ToolbarSpacer />
+                    <Toolbar id="_IDGenToolbar">
+                        <Title
+                            id="_IDGenTitle"
+                            text="Employees"
+                        />
+                        <ToolbarSpacer id="_IDGenToolbarSpacer" />
                         <Button
+                            id="_IDGenButton4"
                             text="{i18n>onboardEmployee}"
                             icon="sap-icon://add-employee"
                             press="onAddEmployee"
@@ -22,33 +29,63 @@
                         />
                     </Toolbar>
                 </headerToolbar>
+
                 <columns>
-                    <Column>
-                        <Text text="Full Name" />
-                    </th>
-                    <Column text="Role" />
-                    <Column>
-                        <Text text="Department Name" />
-                    </th>
-                    <Column>
-                        <Text text="Email" />
-                    </th>
+                    <Column id="_IDGenColumn1">
+                        <header>
+                            <Text text="Full Name" />
+                        </header>
+                    </Column>
+                    <Column id="_IDGenColumn2">
+                        <header>
+                            <Text text="Role" />
+                        </header>
+                    </Column>
+                    <Column id="_IDGenColumn3">
+                        <header>
+                            <Text text="Department Name" />
+                        </header>
+                    </Column>
+                    <Column id="_IDGenColumn4">
+                        <header>
+                            <Text text="Email" />
+                        </header>
+                    </Column>
                     <Column
-                        width="Actions"
+                        id="_IDGenColumn5"
                         width="10%"
                     >
-                        <Text text="Actions" />
+                        <header>
+                            <Text text="Actions" />
+                        </header>
                     </Column>
                 </columns>
+
                 <items>
-                    <ColumnListItem press="onItemPress">
+                    <ColumnListItem
+                        id="_IDGenColumnListItem"
+                        press="onItemPress"
+                    >
                         <cells>
-                            <Text text="{firstName} {lastName}" />
-                            <Text text="{role/name}" />
-                            <Text text="{department/name}" />
-                            <Text text="{email}" />
+                            <Text
+                                id="_IDGenText4"
+                                text="{firstName} {lastName}"
+                            />
+                            <Text
+                                id="_IDGenText5"
+                                text="{role/name}"
+                            />
+                            <Text
+                                id="_IDGenText6"
+                                text="{department/name}"
+                            />
+                            <Text
+                                id="_IDGenText7"
+                                text="{email}"
+                            />
                             <Button
-                                icon="sap-icon-delete"
+                                id="_IDGenButton5"
+                                icon="sap-icon://delete"
                                 press="onDelete"
                                 visible="{user>/isAdmin}"
                             />
