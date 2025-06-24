@@ -16,7 +16,6 @@
     "@cap-js/cds-types": "^0.10.0",
     "@cap-js/sqlite": "^1",
     "@sap/cds-dk": "^8",
-    "@sap/ui5-builder": "^3",
     "@ui5/cli": "^3",
     "rimraf": "^5.0.5",
     "mbt": "^1.2.29"
@@ -29,7 +28,7 @@
     "watch-employ": "cds watch --open employ/webapp/index.html?sap-ui-xx-viewCache=false",
     "undeploy": "cf undeploy ojt_employ --delete-services --delete-service-keys --delete-service-brokers"
   },
-"cds": {
+  "cds": {
   "requires": {
     "auth": {
       "[development]": {
@@ -40,13 +39,7 @@
       }
     },
     "db": {
-      "[development]": {
-        "kind": "sqlite",
-        "database": ":memory:"
-      },
-      "[production]": {
-        "kind": "hana"
-      }
+      "kind": "hana"
     },
     "[hybrid]": {
       "auth": "xsuaa"
@@ -56,4 +49,5 @@
     "native_hana_associations": false
   }
 }
+
 }

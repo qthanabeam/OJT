@@ -1,5 +1,6 @@
 using { ojt_employ } from '../db/data-model';
 
+@path: 'employee'
 service EmployeeService {
   entity Roles as projection on ojt_employ.Roles;
   entity Departments as projection on ojt_employ.Departments;
