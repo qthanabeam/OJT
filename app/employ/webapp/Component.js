@@ -5,7 +5,7 @@ sap.ui.define([
 ], function (UIComponent, Device, JSONModel) {
     "use strict";
 
-    return UIComponent.extend("employ.Component", {
+    return UIComponent.extend("ojt.employ.Component", {
         metadata: {
             manifest: "json",
             interfaces: ["sap.ui.core.IAsyncContentCreation"]
@@ -25,17 +25,17 @@ sap.ui.define([
 
             // Set user model
             var oUserModel = new JSONModel({
-                isAdmin: false // Default to Viewer role
+                isAdmin: true // Set to true for testing, change to false for Viewer role
             });
             this.setModel(oUserModel, "user");
 
-            // Check user role (XSUAA integration)
+            // Check user role (XSUAA integration will be implemented later)
             this._checkUserRole();
         },
 
         _checkUserRole: function () {
             var oUserModel = this.getModel("user");
-            var bIsAdmin = false; // Simulate Viewer role for now
+            var bIsAdmin = true; 
             oUserModel.setProperty("/isAdmin", bIsAdmin);
         }
     });

@@ -18,131 +18,86 @@
                 layout="ColumnLayout"
             >
                 <f:content>
-                    <Label
-                        id="_IDGenLabel"
-                        text="First Name"
-                    />
-                    <Input
-                        id="_IDGenInput1"
-                        value="{firstName}"
-                    />
-                    <Label
-                        id="_IDGenLabel1"
-                        text="Last Name"
-                    />
-                    <Input
-                        id="_IDGenInput2"
-                        value="{lastName}"
-                    />
-                    <Label
-                        id="_IDGenLabel2"
-                        text="Date of Birth"
-                    />
-                    <DatePicker
-                        id="_IDGenDatePicker"
-                        value="{dateOfBirth}"
-                    />
-                    <Label
-                        id="_IDGenLabel3"
-                        text="Gender"
-                    />
-                    <Input
-                        id="_IDGenInput3"
-                        value="{gender}"
-                    />
-                    <Label
-                        id="_IDGenLabel4"
-                        text="Email"
-                    />
-                    <Input
-                        id="_IDGenInput4"
-                        value="{email}"
-                    />
-                    <Label
-                        id="_IDGenLabel5"
-                        text="Hire Date"
-                    />
-                    <DatePicker
-                        id="_IDGenDatePicker1"
-                        value="{hireDate}"
-                    />
-                    <Label
-                        id="_IDGenLabel6"
-                        text="Role"
-                    />
+                    <Label text="First Name" />
+                    <Input value="{firstName}" />
+
+                    <Label text="Last Name" />
+                    <Input value="{lastName}" />
+
+                    <Label text="Date of Birth" />
+                    <DatePicker value="{dateOfBirth}" />
+
+                    <Label text="Gender" />
+                    <Input value="{gender}" />
+
+                    <Label text="Email" />
+                    <Input value="{email}" />
+
+                    <Label text="Hire Date" />
+                    <DatePicker value="{hireDate}" />
+
+                    <Label text="Role" />
                     <ComboBox
                         id="_IDGenComboBox"
                         items="{/Roles}"
+                        selectedKey="{role_ID}"
                     >
-                        <items>
-                            <core:Item
-                                id="_IDGenItem"
-                                key="{ID}"
-                                text="{name}"
-                            />
-                        </items>
-                        <value>{role/ID}</value>
+                        <core:Item
+                            key="{ID}"
+                            text="{name}"
+                        />
                     </ComboBox>
-                    <Label
-                        id="_IDGenLabel7"
-                        text="Department"
-                    />
+
+                    <Label text="Department" />
                     <ComboBox
                         id="_IDGenComboBox1"
                         items="{/Departments}"
+                        selectedKey="{department_ID}"
                     >
-                        <items>
-                            <core:Item
-                                id="_IDGenItem1"
-                                key="{ID}"
-                                text="{name}"
-                            />
-                        </items>
-                        <value>{department/ID}</value>
+                        <core:Item
+                            key="{ID}"
+                            text="{name}"
+                        />
                     </ComboBox>
-                    <Label
-                        id="_IDGenLabel8"
-                        text="Performance Rating"
-                    />
+
+                    <Label text="Performance Rating (1-5)" />
                     <Input
-                        id="_IDGenInput5"
                         value="{performanceRating}"
+                        type="Number"
                     />
-                    <Label
-                        id="_IDGenLabel9"
-                        text="Salary"
-                    />
+
+                    <Label text="Salary" />
                     <Input
-                        id="_IDGenInput6"
                         value="{salary}"
                         editable="false"
                     />
                 </f:content>
             </f:SimpleForm>
 
-            <Button
-                id="_IDGenButton"
-                text="{i18n>calculateSalary}"
-                press="onCalculateSalary"
-                visible="{user>/isAdmin}"
-            />
-            <Button
-                id="_IDGenButton1"
-                text="{i18n>save}"
-                press="onSave"
-                visible="{user>/isAdmin}"
-            />
-            <Button
-                id="_IDGenButton2"
-                text="{i18n>delete}"
-                press="onDelete"
-                visible="{user>/isAdmin}"
-            />
-            <Button
-                id="_IDGenButton3"
-                text="Manage Leaves"
-                press="onManageLeaves"
-            />
+            <VBox class="sapUiMediumMargin">
+                <Button
+                    text="{i18n>calculateSalary}"
+                    press="onCalculateSalary"
+                    visible="{user>/isAdmin}"
+                    type="Emphasized"
+                />
+                <Button
+                    text="{i18n>save}"
+                    press="onSave"
+                    visible="{user>/isAdmin}"
+                    type="Accept"
+                />
+                <Button
+                    text="{i18n>delete}"
+                    press="onDelete"
+                    visible="{user>/isAdmin}"
+                    type="Reject"
+                />
+                <Button
+                    text="Quản lý nghỉ phép"
+                    press="onManageLeaves"
+                />
+            </VBox>
         </content>
     </Page>
 </mvc:View>
