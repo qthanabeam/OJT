@@ -31,18 +31,11 @@
   "cds": {
   "requires": {
     "auth": {
-      "[development]": {
-        "kind": "mocked"
-      },
-      "[production]": {
-        "kind": "xsuaa"
-      }
+      "kind": "xsuaa"
+      
     },
     "db": {
       "kind": "hana"
-    },
-    "[hybrid]": {
-      "auth": "xsuaa"
     }
   },
   "sql": {

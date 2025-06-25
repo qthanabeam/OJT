@@ -33,22 +33,34 @@
                 <columns>
                     <Column id="_IDGenColumn1">
                         <header>
-                            <Text text="Full Name" />
+                            <Text
+                                id="_IDGenText14"
+                                text="Full Name"
+                            />
                         </header>
                     </Column>
                     <Column id="_IDGenColumn2">
                         <header>
-                            <Text text="Role" />
+                            <Text
+                                id="_IDGenText15"
+                                text="Role"
+                            />
                         </header>
                     </Column>
                     <Column id="_IDGenColumn3">
                         <header>
-                            <Text text="Department Name" />
+                            <Text
+                                id="_IDGenText16"
+                                text="Department Name"
+                            />
                         </header>
                     </Column>
                     <Column id="_IDGenColumn4">
                         <header>
-                            <Text text="Email" />
+                            <Text
+                                id="_IDGenText17"
+                                text="Email"
+                            />
                         </header>
                     </Column>
                     <Column
@@ -56,7 +68,10 @@
                         width="10%"
                     >
                         <header>
-                            <Text text="Actions" />
+                            <Text
+                                id="_IDGenText18"
+                                text="Actions"
+                            />
                         </header>
                     </Column>
                 </columns>

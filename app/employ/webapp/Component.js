@@ -28,8 +28,7 @@ sap.ui.define([
                 isAdmin: true // Set to true for testing, change to false for Viewer role
             });
             this.setModel(oUserModel, "user");
-
-            // Check user role (XSUAA integration will be implemented later)
+           
             this._checkUserRole();
         },
 
@@ -37,6 +36,7 @@ sap.ui.define([
             var oUserModel = this.getModel("user");
             var bIsAdmin = true; 
             oUserModel.setProperty("/isAdmin", bIsAdmin);
+            console.log(oUserModel);
         }
     });
 });

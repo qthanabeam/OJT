@@ -18,82 +18,82 @@
                 layout="ColumnLayout"
             >
                 <f:content>
-                    <Label text="First Name" />
-                    <Input value="{firstName}" />
+                    <Label id="_IDGenLabel1" text="First Name" />
+                    <Input id="_IDGenInput" value="{firstName}" />
 
-                    <Label text="Last Name" />
-                    <Input value="{lastName}" />
+                    <Label id="_IDGenLabel2" text="Last Name" />
+                    <Input id="_IDGenInput1" value="{lastName}" />
 
-                    <Label text="Date of Birth" />
-                    <DatePicker value="{dateOfBirth}" />
+                    <Label id="_IDGenLabel3" text="Date of Birth" />
+                    <DatePicker id="_IDGenDatePicker" value="{dateOfBirth}" />
 
-                    <Label text="Gender" />
-                    <Input value="{gender}" />
+                    <Label id="_IDGenLabel4" text="Gender" />
+                    <Input id="_IDGenInput2" value="{gender}" />
 
-                    <Label text="Email" />
-                    <Input value="{email}" />
+                    <Label id="_IDGenLabel5" text="Email" />
+                    <Input id="_IDGenInput3" value="{email}" />
 
-                    <Label text="Hire Date" />
-                    <DatePicker value="{hireDate}" />
+                    <Label id="_IDGenLabel6" text="Hire Date" />
+                    <DatePicker id="_IDGenDatePicker1" value="{hireDate}" />
 
-                    <Label text="Role" />
+                    <Label id="_IDGenLabel7" text="Role" />
                     <ComboBox
                         id="_IDGenComboBox"
                         items="{/Roles}"
                         selectedKey="{role_ID}"
                     >
-                        <core:Item
+                        <core:Item id="_IDGenItem"
                             key="{ID}"
                             text="{name}"
                         />
                     </ComboBox>
 
-                    <Label text="Department" />
+                    <Label id="_IDGenLabel8" text="Department" />
                     <ComboBox
                         id="_IDGenComboBox1"
                         items="{/Departments}"
                         selectedKey="{department_ID}"
                     >
-                        <core:Item
+                        <core:Item id="_IDGenItem1"
                             key="{ID}"
                             text="{name}"
                         />
                     </ComboBox>
 
-                    <Label text="Performance Rating (1-5)" />
-                    <Input
+                    <Label id="_IDGenLabel9" text="Performance Rating (1-5)" />
+                    <Input id="_IDGenInput4"
                         value="{performanceRating}"
                         type="Number"
                     />
 
-                    <Label text="Salary" />
-                    <Input
+                    <Label id="_IDGenLabel10" text="Salary" />
+                    <Input id="_IDGenInput5"
                         value="{salary}"
                         editable="false"
                     />
                 </f:content>
             </f:SimpleForm>
 
-            <VBox class="sapUiMediumMargin">
-                <Button
+            <VBox id="_IDGenVBox" class="sapUiMediumMargin">
+                <Button id="_IDGenButton"
                     text="{i18n>calculateSalary}"
                     press="onCalculateSalary"
                     visible="{user>/isAdmin}"
                     type="Emphasized"
                 />
-                <Button
+                <Button id="_IDGenButton1"
                     text="{i18n>save}"
                     press="onSave"
                     visible="{user>/isAdmin}"
                     type="Accept"
                 />
-                <Button
+                <Button id="_IDGenButton2"
                     text="{i18n>delete}"
                     press="onDelete"
                     visible="{user>/isAdmin}"
                     type="Reject"
                 />
-                <Button
+                <Button id="_IDGenButton3"
                     text="Quản lý nghỉ phép"
                     press="onManageLeaves"
                 />
