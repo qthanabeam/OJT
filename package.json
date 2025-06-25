@@ -31,9 +31,11 @@
   "cds": {
   "requires": {
     "auth": {
-      "kind": "xsuaa"
-      
-    },
+  "kind": "xsuaa",
+  "credentials": {
+    "xsappname": "ojt_employ"
+  }
+},
     "db": {
       "kind": "hana"
     }

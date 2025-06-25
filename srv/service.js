@@ -1,6 +1,6 @@
-const cds = require('@sap/cds');
+const cds = require("@sap/cds");
 
-module.exports = cds.service.impl(async function() {
+module.exports = cds.service.impl(async function () {
   const { Employees, Roles, LeaveRequests } = this.entities;
 
   // Calculate years of service
@@ -11,38 +11,45 @@ module.exports = cds.service.impl(async function() {
   };
 
   // Calculate salary
-  this.on('calculateSalary', async (req) => {
+  this.on("calculateSalary", async (req) => {
     const { employeeID } = req.data;
-   const employee = await SELECT.one.from(Employees)
-  .where({ ID: employeeID })
-  .columns('*', { role: ['*'] });
-    if (!employee) req.error(404, 'Employee not found');
+    const employee = await SELECT.one
+      .from(Employees, (e) => {
+        e("*"), e.role((r) => r("*"));
+      })
+      .where({ ID: employeeID });
+    if (!employee) req.error(404, "Employee not found");
 
     const yearsOfService = getYearsOfService(employee.hireDate);
-    const baseSalary = employee.role.baseSalary || 0;
-    const allowance = employee.role.allowance || 0;
+    const baseSalary = Number(employee.role.baseSalary || 0);
+    const allowance = Number(employee.role.allowance || 0);
     const serviceBonus = yearsOfService * 1000;
     const performanceBonus = (employee.performanceRating || 1) * 500;
 
-    const totalSalary = baseSalary + allowance + serviceBonus + performanceBonus;
+    const totalSalary =
+      baseSalary + allowance + serviceBonus + performanceBonus;
 
-    await UPDATE(Employees).set({ salary: totalSalary }).where({ ID: employeeID });
+    const totalSalaryRounded = Math.round(totalSalary * 100) / 100;
+    await UPDATE(Employees)
+      .set({ salary: totalSalaryRounded })
+      .where({ ID: employeeID });
+
     return totalSalary;
   });
 
   // Restrict access based on roles
-  this.before(['CREATE', 'UPDATE', 'DELETE'], [Employees, LeaveRequests], async (req) => {
-    const user = req.user;
-    if (!user.is('Admin')) {
-      req.error(403, 'Admin role required for this operation');
-    }
-  });
+  // this.before(['CREATE', 'UPDATE', 'DELETE'], [Employees, LeaveRequests], async (req) => {
+  //   const user = req.user;
+  //   if (!user.is('Admin')) {
+  //     console.log(user);
+  //     req.error(403, 'Admin role required for this operation');
+  //   }
+  // });
 
-  // Restrict LeaveRequests updates to Admins
-  this.before('UPDATE', LeaveRequests, async (req) => {
-    const user = req.user;
-    if (!user.is('Admin')) {
-      req.error(403, 'Only Admins can approve/reject leave requests');
-    }
-  });
+  // // Restrict LeaveRequests updates to Admins
+  // this.before('UPDATE', LeaveRequests, async (req) => {
+  //   if (!user.is('Admin')) {
+  //     req.error(403, 'Only Admins can approve/reject leave requests');
+  //   }
+  // });
 });

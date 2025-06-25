@@ -7,35 +7,42 @@
     <Page
         id="_IDGenPage1"
         title="{i18n>listTitle}"
+        showHeader="false"
     >
         <content>
             <Table
                 id="employeeTable"
-                items="{/Employees}"
+                items="{
+                    path: '/Employees',
+                    parameters: {
+                        $expand: 'role,department'
+                    }
+                }"
+                growing="true"
+                growingThreshold="10"
             >
                 <headerToolbar>
                     <Toolbar id="_IDGenToolbar">
                         <Title
                             id="_IDGenTitle"
-                            text="Employees"
+                            text="{i18n>employees}"
                         />
                         <ToolbarSpacer id="_IDGenToolbarSpacer" />
                         <Button
                             id="_IDGenButton4"
                             text="{i18n>onboardEmployee}"
                             icon="sap-icon://add-employee"
-                            press="onAddEmployee"
+                            press="onNavToAddEmployee"
                             visible="{user>/isAdmin}"
                         />
                     </Toolbar>
                 </headerToolbar>
-
                 <columns>
                     <Column id="_IDGenColumn1">
                         <header>
                             <Text
                                 id="_IDGenText14"
-                                text="Full Name"
+                                text="{i18n>fullName}"
                             />
                         </header>
                     </Column>
@@ -43,7 +50,7 @@
                         <header>
                             <Text
                                 id="_IDGenText15"
-                                text="Role"
+                                text="{i18n>role}"
                             />
                         </header>
                     </Column>
@@ -51,7 +58,7 @@
                         <header>
                             <Text
                                 id="_IDGenText16"
-                                text="Department Name"
+                                text="{i18n>department}"
                             />
                         </header>
                     </Column>
@@ -59,27 +66,28 @@
                         <header>
                             <Text
                                 id="_IDGenText17"
-                                text="Email"
+                                text="{i18n>email}"
                             />
                         </header>
                     </Column>
                     <Column
                         id="_IDGenColumn5"
                         width="10%"
+                        visible="{user>/isAdmin}"
                     >
                         <header>
                             <Text
                                 id="_IDGenText18"
-                                text="Actions"
+                                text="{i18n>actions}"
                             />
                         </header>
                     </Column>
                 </columns>
-
                 <items>
                     <ColumnListItem
                         id="_IDGenColumnListItem"
                         press="onItemPress"
+                        type="Navigation"
                     >
                         <cells>
                             <Text

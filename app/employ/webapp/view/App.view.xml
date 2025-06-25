@@ -4,5 +4,46 @@
     controllerName="ojt.employ.controller.App"
     displayBlock="true"
 >
-    <App id="app" />
+    <App id="app">
+        <Page id="mainPage">
+            <customHeader>
+                <Toolbar id="_IDGenToolbar3">
+                    <Title
+                        id="_IDGenTitle2"
+                        text="{i18n>appTitle}"
+                    />
+                    <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+                    <Button
+                        id="_IDGenButton1"
+                        text="{i18n>listTitle}"
+                        icon="sap-icon://list"
+                        press=".onNavToList"
+                    />
+                    <Button
+                        id="_IDGenButton2"
+                        text="{i18n>onboardEmployee}"
+                        icon="sap-icon://add-employee"
+                        press=".onNavToAddEmployee"
+                        visible="{user>/isAdmin}"
+                    />
+                </Toolbar>
+            </customHeader>
+            <subHeader>
+                <Toolbar id="_IDGenSubToolbar">
+                    <Text
+                        id="_IDGenText13"
+                        text="{i18n>welcomeMessage} {user>/userName} ({user>/role})"
+                    />
+                    <ToolbarSpacer id="_IDGenToolbarSpacer2" />
+                    <TextArea id="_IDGenTextArea1" />
+                </Toolbar>
+            </subHeader>
+            <content>
+                <mvc:XMLView
+                    id="content"
+                    viewName="ojt.employ.view.List"
+                />
+            </content>
+        </Page>
+    </App>
 </mvc:View>

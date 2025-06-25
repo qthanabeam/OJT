@@ -1,0 +1,27 @@
+_checkUserRole: function () {
+    var oUserModel = this.getModel("user");
+    
+    // Lấy user info từ request context
+    var oReq = this.getModel().getHttpHeaders();
+    var sAuthHeader = oReq.Authorization || "";
+    
+    // Decode JWT token để lấy scopes (simplified)
+    var bIsAdmin = sAuthHeader.includes("Admin") || false;
+    
+    oUserModel.setProperty("/isAdmin", bIsAdmin);
+    oUserModel.setProperty("/role", bIsAdmin ? "Admin" : "Viewer");
+    oUserModel.setProperty("/userName", "Current User");
+}
+
+"": {
+    "dataSource": "mainService",
+    "preload": true,
+    "settings": {
+        "operationMode": "Server",
+        "autoExpandSelect": true,
+        "earlyRequests": true,
+        "headers": {
+            "Authorization": "Bearer {{token}}"
+        }
+    }
+}

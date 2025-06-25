@@ -71,39 +71,49 @@
                 "async": true
             },
             "routes": [
-                {
-                    "pattern": "",
-                    "name": "list",
-                    "target": "list"
-                },
-                {
-                    "pattern": "employee/{employeeId}",
-                    "name": "detail",
-                    "target": "detail"
-                },
-                {
-                    "pattern": "leave/{employeeId}",
-                    "name": "leave",
-                    "target": "leave"
-                }
-            ],
-            "targets": {
-                "list": {
-                    "viewName": "List",
-                    "viewId": "list",
-                    "viewLevel": 1
-                },
-                "detail": {
-                    "viewName": "Detail",
-                    "viewId": "detail",
-                    "viewLevel": 2
-                },
-                "leave": {
-                    "viewName": "Leave",
-                    "viewId": "leave",
-                    "viewLevel": 2
-                }
-            }
+    {
+        "pattern": "",
+        "name": "list",
+        "target": "list"
+    },
+    {
+        "pattern": "employee/{employeeId}",
+        "name": "detail",
+        "target": "detail"
+    },
+    {
+        "pattern": "leave/{employeeId}",
+        "name": "leave",
+        "target": "leave"
+    },
+    {
+        "pattern": "addEmployee",
+        "name": "addEmployee",
+        "target": "addEmployee"
+    }
+],
+"targets": {
+    "list": {
+        "viewName": "List",
+        "viewId": "list",
+        "viewLevel": 1
+    },
+    "detail": {
+        "viewName": "Detail",
+        "viewId": "detail",
+        "viewLevel": 2
+    },
+    "leave": {
+        "viewName": "Leave",
+        "viewId": "leave",
+        "viewLevel": 2
+    },
+    "addEmployee": {
+        "viewName": "AddEmployee",
+        "viewId": "addEmployee",
+        "viewLevel": 2
+    }
+}
         },
         "rootView": {
             "viewName": "ojt.employ.view.App",

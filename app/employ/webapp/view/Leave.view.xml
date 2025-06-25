@@ -8,8 +8,7 @@
     <Page
         id="leavePage"
         title="{i18n>leaveTitle}"
-        showNavButton="true"
-        navButtonPress="onNavBack"
+        showHeader="false"
     >
         <content>
             <f:SimpleForm
@@ -20,17 +19,28 @@
                 visible="{user>/isAdmin}"
             >
                 <f:content>
-                    <Label id="_IDGenLabel11" text="{i18n>startDate}" />
+                    <Label
+                        id="_IDGenLabel11"
+                        text="{i18n>startDate}"
+                    />
                     <DatePicker
                         id="startDate"
-                        value="{newLeave>/startDate}"
+                        valueFormat="yyyy-MM-dd"
+                        value="{path: 'newLeave>/startDate'}"
                     />
-                    <Label id="_IDGenLabel12" text="{i18n>endDate}" />
+                    <Label
+                        id="_IDGenLabel12"
+                        text="{i18n>endDate}"
+                    />
                     <DatePicker
                         id="endDate"
-                        value="{newLeave>/endDate}"
+                        valueFormat="yyyy-MM-dd"
+                        value="{path: 'newLeave>/endDate'}"
                     />
-                    <Label id="_IDGenLabel13" text="{i18n>reason}" />
+                    <Label
+                        id="_IDGenLabel13"
+                        text="{i18n>reason}"
+                    />
                     <Input
                         id="reason"
                         value="{newLeave>/reason}"
@@ -45,64 +55,101 @@
             />
             <Table
                 id="leaveTable"
-                items="{/LeaveRequests}"
+                items="{
+                    path: '/LeaveRequests',
+                    parameters: {
+                        $expand: 'employee'
+                    }
+                }"
                 growing="true"
                 growingThreshold="10"
             >
                 <headerToolbar>
                     <Toolbar id="_IDGenToolbar1">
-                        <Title id="_IDGenTitle1" text="{i18n>leaveRequests}" />
+                        <Title
+                            id="_IDGenTitle1"
+                            text="{i18n>leaveRequests}"
+                        />
                     </Toolbar>
                 </headerToolbar>
                 <columns>
                     <Column id="_IDGenColumn">
                         <header>
-                            <Text id="_IDGenText" text="{i18n>startDate}" />
+                            <Text
+                                id="_IDGenText"
+                                text="{i18n>startDate}"
+                            />
                         </header>
                     </Column>
                     <Column id="_IDGenColumn6">
                         <header>
-                            <Text id="_IDGenText1" text="{i18n>endDate}" />
+                            <Text
+                                id="_IDGenText1"
+                                text="{i18n>endDate}"
+                            />
                         </header>
                     </Column>
                     <Column id="_IDGenColumn7">
                         <header>
-                            <Text id="_IDGenText2" text="{i18n>status}" />
+                            <Text
+                                id="_IDGenText2"
+                                text="{i18n>status}"
+                            />
                         </header>
                     </Column>
                     <Column id="_IDGenColumn8">
                         <header>
-                            <Text id="_IDGenText3" text="{i18n>reason}" />
+                            <Text
+                                id="_IDGenText3"
+                                text="{i18n>reason}"
+                            />
                         </header>
                     </Column>
-                    <Column id="_IDGenColumn9"
+                    <Column
+                        id="_IDGenColumn9"
                         width="15%"
                         visible="{user>/isAdmin}"
                     >
                         <header>
-                            <Text id="_IDGenText8" text="{i18n>actions}" />
+                            <Text
+                                id="_IDGenText8"
+                                text="{i18n>actions}"
+                            />
                         </header>
                     </Column>
                 </columns>
                 <items>
                     <ColumnListItem id="_IDGenColumnListItem1">
                         <cells>
-                            <Text id="_IDGenText9"
+                            <Text
+                                id="_IDGenText9"
                                 text="{path: 'startDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' }}"
                             />
-                            <Text id="_IDGenText10"
+                            <Text
+                                id="_IDGenText10"
                                 text="{path: 'endDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' }}"
                             />
-                            <Text id="_IDGenText11" text="{status}" />
-                            <Text id="_IDGenText12" text="{reason}" />
-                            <HBox id="_IDGenHBox" visible="{user>/isAdmin}">
-                                <Button id="_IDGenButton6"
+                            <Text
+                                id="_IDGenText11"
+                                text="{status}"
+                            />
+                            <Text
+                                id="_IDGenText12"
+                                text="{reason}"
+                            />
+                            <HBox
+                                id="_IDGenHBox"
+                                visible="{user>/isAdmin}"
+                            >
+                                <Button
+                                    id="_IDGenButton6"
                                     icon="sap-icon://accept"
                                     tooltip="{i18n>approve}"
                                     press="onApproveRequest"
                                     enabled="{= ${status} === 'Pending'}"
                                 />
-                                <Button id="_IDGenButton7"
+                                <Button
+                                    id="_IDGenButton7"
                                     icon="sap-icon://decline"
                                     tooltip="{i18n>reject}"
                                     press="onRejectRequest"
