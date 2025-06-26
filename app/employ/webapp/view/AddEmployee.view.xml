@@ -5,36 +5,42 @@
     controllerName="ojt.employ.controller.AddEmployee"
     displayBlock="true"
 >
-    <Page
-        id="addEmployeePage"
-        title="{i18n>addEmployeeTitle}"
-        showNavButton="true"
-        navButtonPress="onNavBack"
+    <ScrollContainer
+        id="addEmployeeScrollContainer"
+        vertical="true"
+        height="100%"
     >
-        <customHeader>
-            <core:Fragment
-                fragmentName="ojt.employ.fragments.Header"
-                type="XML"
-            />
-        </customHeader>
-        <content>
-            <core:Fragment
-                fragmentName="ojt.employ.fragments.AddEmployeeForm"
-                type="XML"
-            />
-            <Button
-                id="submitButton"
-                text="{i18n>submit}"
-                type="Accept"
-                press="onSubmitNewEmployee"
-                class="sapUiMediumMargin"
-            />
-            <Button
-                id="cancelButton"
-                text="{i18n>cancel}"
-                press="onCancel"
-                class="sapUiMediumMargin"
-            />
-        </content>
-    </Page>
+        <core:Fragment
+            fragmentName="ojt.employ.fragments.Header"
+            type="XML"
+        />
+        <VBox class="sapUiSmallMargin">
+            <Panel
+                headerText="{i18n>addEmployeeTitle}"
+                class="sapUiResponsiveMargin"
+                width="auto"
+            >
+                <content>
+                    <core:Fragment
+                        fragmentName="ojt.employ.fragments.AddEmployeeForm"
+                        type="XML"
+                    />
+                    <HBox class="sapUiMediumMarginTop">
+                        <Button
+                            id="submitButton"
+                            text="{i18n>submit}"
+                            type="Accept"
+                            press="onSubmitNewEmployee"
+                            class="sapUiSmallMarginEnd"
+                        />
+                        <Button
+                            id="cancelButton"
+                            text="{i18n>cancel}"
+                            press="onCancel"
+                        />
+                    </HBox>
+                </content>
+            </Panel>
+        </VBox>
+    </ScrollContainer>
 </mvc:View>

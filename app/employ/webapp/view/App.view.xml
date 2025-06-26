@@ -1,13 +1,8 @@
 <mvc:View
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    xmlns:f="sap.f"
     controllerName="ojt.employ.controller.App"
     displayBlock="true"
 >
-    <f:FlexibleColumnLayout
-        id="flexibleColumnLayout"
-        layout="{/layout}"
-        backgroundDesign="Solid"
-    />
+    <App id="app" />
 </mvc:View>

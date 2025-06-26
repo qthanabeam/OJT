@@ -5,107 +5,104 @@
     controllerName="ojt.employ.controller.List"
     displayBlock="true"
 >
-    <Page
-        id="listPage"
-        title="{i18n>listTitle}"
+    <ScrollContainer
+        id="listScrollContainer"
+        vertical="true"
+        height="100%"
     >
-        <customHeader>
-            <core:Fragment
-                fragmentName="ojt.employ.fragments.Header"
-                type="XML"
-            />
-        </customHeader>
-        <content>
-            <Table
-                id="employeeTable"
-                items="{
-                    path: '/Employees',
-                    parameters: {
-                        $expand: 'role,department'
-                    }
-                }"
-                growing="true"
-                growingThreshold="10"
+        <core:Fragment
+            fragmentName="ojt.employ.fragments.Header"
+            type="XML"
+        />
+        <VBox class="sapUiSmallMargin">
+            <Panel
+                headerText="{i18n>listTitle}"
+                class="sapUiResponsiveMargin"
+                width="auto"
             >
-                <columns>
-                    <Column id="fullNameColumn">
-                        <header>
-                            <Text
-                                id="fullNameText"
-                                text="{i18n>fullName}"
-                            />
-                        </header>
-                    </Column>
-                    <Column id="roleColumn">
-                        <header>
-                            <Text
-                                id="roleText"
-                                text="{i18n>role}"
-                            />
-                        </header>
-                    </Column>
-                    <Column id="departmentColumn">
-                        <header>
-                            <Text
-                                id="departmentText"
-                                text="{i18n>department}"
-                            />
-                        </header>
-                    </Column>
-                    <Column id="emailColumn">
-                        <header>
-                            <Text
-                                id="emailText"
-                                text="{i18n>email}"
-                            />
-                        </header>
-                    </Column>
-                    <Column
-                        id="actionsColumn"
-                        width="10%"
-                        visible="{user>/isAdmin}"
+                <content>
+                    <Table
+                        id="employeeTable"
+                        items="{
+                            path: '/Employees',
+                            parameters: {
+                                $expand: 'role,department'
+                            }
+                        }"
+                        growing="true"
+                        growingThreshold="10"
                     >
-                        <header>
-                            <Text
-                                id="actionsText"
-                                text="{i18n>actions}"
-                            />
-                        </header>
-                    </Column>
-                </columns>
-                <items>
-                    <ColumnListItem
-                        id="employeeItem"
-                        press="onItemPress"
-                        type="Navigation"
-                    >
-                        <cells>
-                            <Text
-                                id="fullName"
-                                text="{firstName} {lastName}"
-                            />
-                            <Text
-                                id="roleName"
-                                text="{role/name}"
-                            />
-                            <Text
-                                id="departmentName"
-                                text="{department/name}"
-                            />
-                            <Text
-                                id="email"
-                                text="{email}"
-                            />
-                            <Button
-                                id="deleteButton"
-                                icon="sap-icon://delete"
-                                press="onDelete"
+                        <columns>
+                            <Column id="fullNameColumn">
+                                <Text
+                                    id="fullNameText"
+                                    text="{i18n>fullName}"
+                                />
+                            </Column>
+                            <Column id="roleColumn">
+                                <Text
+                                    id="roleText"
+                                    text="{i18n>role}"
+                                />
+                            </Column>
+                            <Column id="departmentColumn">
+                                <Text
+                                    id="departmentText"
+                                    text="{i18n>department}"
+                                />
+                            </Column>
+                            <Column id="emailColumn">
+                                <Text
+                                    id="emailText"
+                                    text="{i18n>email}"
+                                />
+                            </Column>
+                            <Column
+                                id="actionsColumn"
+                                width="10%"
                                 visible="{user>/isAdmin}"
-                            />
-                        </cells>
-                    </ColumnListItem>
-                </items>
-            </Table>
-        </content>
-    </Page>
+                            >
+                                <Text
+                                    id="actionsText"
+                                    text="{i18n>actions}"
+                                />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem
+                                id="employeeItem"
+                                press="onItemPress"
+                                type="Navigation"
+                            >
+                                <cells>
+                                    <Text
+                                        id="fullName"
+                                        text="{firstName} {lastName}"
+                                    />
+                                    <Text
+                                        id="roleName"
+                                        text="{role/name}"
+                                    />
+                                    <Text
+                                        id="departmentName"
+                                        text="{department/name}"
+                                    />
+                                    <Text
+                                        id="email"
+                                        text="{email}"
+                                    />
+                                    <Button
+                                        id="deleteButton"
+                                        icon="sap-icon://delete"
+                                        press="onDelete"
+                                        visible="{user>/isAdmin}"
+                                    />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </content>
+            </Panel>
+        </VBox>
+    </ScrollContainer>
 </mvc:View>

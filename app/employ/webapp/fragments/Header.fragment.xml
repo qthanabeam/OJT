@@ -16,13 +16,13 @@
             id="listButton"
             text="{i18n>listTitle}"
             icon="sap-icon://list"
-            press="onNavToList"
+            press=".onNavToList"
         />
         <Button
             id="addEmployeeButton"
             text="{i18n>onboardEmployee}"
             icon="sap-icon://add-employee"
-            press="onNavToAddEmployee"
+            press=".onNavToAddEmployee"
             visible="{user>/isAdmin}"
         />
     </OverflowToolbar>

@@ -63,25 +63,17 @@ sap.ui.define(
 
       onSave: function () {
         var oContext = this.getView().getBindingContext();
-
         if (!oContext) {
           MessageToast.show("Không thể lưu - không có context");
           return;
         }
 
-        // Fixed: Use correct IDs from the view
         var oRoleComboBox = this.byId("roleComboBox");
         var oDeptComboBox = this.byId("departmentComboBox");
-
-        if (!oRoleComboBox || !oDeptComboBox) {
-          MessageToast.show("Không thể tìm thấy ComboBox controls");
-          return;
-        }
 
         var sSelectedRoleKey = oRoleComboBox.getSelectedKey();
         var sSelectedDeptKey = oDeptComboBox.getSelectedKey();
 
-        // Set the association IDs
         if (sSelectedRoleKey) {
           oContext.setProperty("role_ID", sSelectedRoleKey);
         }
@@ -89,7 +81,6 @@ sap.ui.define(
           oContext.setProperty("department_ID", sSelectedDeptKey);
         }
 
-        // Submit changes using OData V4
         oContext
           .getModel()
           .submitBatch("$auto")

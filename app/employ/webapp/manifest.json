@@ -76,8 +76,8 @@
     "routing": {
       "config": {
         "routerClass": "sap.m.routing.Router",
-        "controlAggregation": "beginColumnPages",
-        "controlId": "flexibleColumnLayout",
+        "controlAggregation": "pages",
+        "controlId": "app",
         "type": "View",
         "viewType": "XML",
         "path": "ojt.employ.view",
@@ -92,12 +92,12 @@
         {
           "pattern": "employee/{employeeId}",
           "name": "detail",
-          "target": ["list", "detail"]
+          "target": ["detail"]
         },
         {
           "pattern": "leave/{employeeId}",
           "name": "leave",
-          "target": ["list", "detail", "leave"]
+          "target": ["leave"]
         },
         {
           "pattern": "addEmployee",
@@ -108,23 +108,19 @@
       "targets": {
         "list": {
           "viewName": "List",
-          "viewId": "list",
-          "controlAggregation": "beginColumnPages"
+          "viewId": "list"
         },
         "detail": {
           "viewName": "Detail",
-          "viewId": "detail",
-          "controlAggregation": "midColumnPages"
+          "viewId": "detail"
         },
         "leave": {
           "viewName": "Leave",
-          "viewId": "leave",
-          "controlAggregation": "endColumnPages"
+          "viewId": "leave"
         },
         "addEmployee": {
           "viewName": "AddEmployee",
-          "viewId": "addEmployee",
-          "controlAggregation": "beginColumnPages"
+          "viewId": "addEmployee"
         }
       }
     },
