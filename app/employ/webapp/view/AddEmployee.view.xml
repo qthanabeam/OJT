@@ -1,0 +1,40 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    controllerName="ojt.employ.controller.AddEmployee"
+    displayBlock="true"
+>
+    <Page
+        id="addEmployeePage"
+        title="{i18n>addEmployeeTitle}"
+        showNavButton="true"
+        navButtonPress="onNavBack"
+    >
+        <customHeader>
+            <core:Fragment
+                fragmentName="ojt.employ.fragments.Header"
+                type="XML"
+            />
+        </customHeader>
+        <content>
+            <core:Fragment
+                fragmentName="ojt.employ.fragments.AddEmployeeForm"
+                type="XML"
+            />
+            <Button
+                id="submitButton"
+                text="{i18n>submit}"
+                type="Accept"
+                press="onSubmitNewEmployee"
+                class="sapUiMediumMargin"
+            />
+            <Button
+                id="cancelButton"
+                text="{i18n>cancel}"
+                press="onCancel"
+                class="sapUiMediumMargin"
+            />
+        </content>
+    </Page>
+</mvc:View>

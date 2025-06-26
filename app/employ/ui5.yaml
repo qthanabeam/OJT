@@ -1,0 +1,32 @@
+specVersion: "3.1"
+metadata:
+  name: employ
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ui5:
+          url: https://sapui5.hana.ondemand.com
+          path:
+            - /resources
+            - /test-resources
+        backend:
+          - path: /odata/v4/employee
+            url: http://localhost:4004
+            preserveHostHeader: true
+            changeOrigin: true
+          - path: /employee/userInfo
+            url: http://localhost:4004/odata/v4/employee/userInfo
+            preserveHostHeader: true
+            changeOrigin: true
+            
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+
+        

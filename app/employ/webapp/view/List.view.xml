@@ -1,0 +1,111 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    controllerName="ojt.employ.controller.List"
+    displayBlock="true"
+>
+    <Page
+        id="listPage"
+        title="{i18n>listTitle}"
+    >
+        <customHeader>
+            <core:Fragment
+                fragmentName="ojt.employ.fragments.Header"
+                type="XML"
+            />
+        </customHeader>
+        <content>
+            <Table
+                id="employeeTable"
+                items="{
+                    path: '/Employees',
+                    parameters: {
+                        $expand: 'role,department'
+                    }
+                }"
+                growing="true"
+                growingThreshold="10"
+            >
+                <columns>
+                    <Column id="fullNameColumn">
+                        <header>
+                            <Text
+                                id="fullNameText"
+                                text="{i18n>fullName}"
+                            />
+                        </header>
+                    </Column>
+                    <Column id="roleColumn">
+                        <header>
+                            <Text
+                                id="roleText"
+                                text="{i18n>role}"
+                            />
+                        </header>
+                    </Column>
+                    <Column id="departmentColumn">
+                        <header>
+                            <Text
+                                id="departmentText"
+                                text="{i18n>department}"
+                            />
+                        </header>
+                    </Column>
+                    <Column id="emailColumn">
+                        <header>
+                            <Text
+                                id="emailText"
+                                text="{i18n>email}"
+                            />
+                        </header>
+                    </Column>
+                    <Column
+                        id="actionsColumn"
+                        width="10%"
+                        visible="{user>/isAdmin}"
+                    >
+                        <header>
+                            <Text
+                                id="actionsText"
+                                text="{i18n>actions}"
+                            />
+                        </header>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem
+                        id="employeeItem"
+                        press="onItemPress"
+                        type="Navigation"
+                    >
+                        <cells>
+                            <Text
+                                id="fullName"
+                                text="{firstName} {lastName}"
+                            />
+                            <Text
+                                id="roleName"
+                                text="{role/name}"
+                            />
+                            <Text
+                                id="departmentName"
+                                text="{department/name}"
+                            />
+                            <Text
+                                id="email"
+                                text="{email}"
+                            />
+                            <Button
+                                id="deleteButton"
+                                icon="sap-icon://delete"
+                                press="onDelete"
+                                visible="{user>/isAdmin}"
+                            />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,139 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    controllerName="ojt.employ.controller.Leave"
+    displayBlock="true"
+>
+    <Page
+        id="leavePage"
+        title="{i18n>leaveTitle}"
+    >
+        <customHeader>
+            <core:Fragment
+                fragmentName="ojt.employ.fragments.Header"
+                type="XML"
+            />
+        </customHeader>
+        <content>
+            <core:Fragment
+                fragmentName="ojt.employ.fragments.LeaveRequestForm"
+                type="XML"
+            />
+            <Button
+                id="addLeaveButton"
+                text="{i18n>addLeaveRequest}"
+                press="onAddLeaveRequest"
+                visible="{user>/isAdmin}"
+                class="sapUiMediumMarginBottom"
+            />
+            <Table
+                id="leaveTable"
+                items="{
+                    path: '/LeaveRequests',
+                    parameters: {
+                        $expand: 'employee'
+                    }
+                }"
+                growing="true"
+                growingThreshold="10"
+            >
+                <headerToolbar>
+                    <Toolbar id="leaveTableToolbar">
+                        <Title
+                            id="leaveTableTitle"
+                            text="{i18n>leaveRequests}"
+                        />
+                    </Toolbar>
+                </headerToolbar>
+                <columns>
+                    <Column id="startDateColumn">
+                        <header>
+                            <Text
+                                id="startDateText"
+                                text="{i18n>startDate}"
+                            />
+                        </header>
+                    </Column>
+                    <Column id="endDateColumn">
+                        <header>
+                            <Text
+                                id="endDateText"
+                                text="{i18n>endDate}"
+                            />
+                        </header>
+                    </Column>
+                    <Column id="statusColumn">
+                        <header>
+                            <Text
+                                id="statusText"
+                                text="{i18n>status}"
+                            />
+                        </header>
+                    </Column>
+                    <Column id="reasonColumn">
+                        <header>
+                            <Text
+                                id="reasonText"
+                                text="{i18n>reason}"
+                            />
+                        </header>
+                    </Column>
+                    <Column
+                        id="_IDGenColumn1"
+                        width="15%"
+                        visible="{user>/isAdmin}"
+                    >
+                        <header>
+                            <Text
+                                id="_IDGenText"
+                                text="{i18n>actions}"
+                            />
+                        </header>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem id="leaveItem">
+                        <cells>
+                            <Text
+                                id="startDate"
+                                text="{path: 'startDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' }}"
+                            />
+                            <Text
+                                id="endDate"
+                                text="{path: 'endDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' }}"
+                            />
+                            <Text
+                                id="status"
+                                text="{status}"
+                            />
+                            <Text
+                                id="reason"
+                                text="{reason}"
+                            />
+                            <HBox
+                                id="actionButtons"
+                                visible="{user>/isAdmin}"
+                            >
+                                <Button
+                                    id="approveButton"
+                                    icon="sap-icon://accept"
+                                    tooltip="{i18n>approve}"
+                                    press="onApproveRequest"
+                                    enabled="{= ${status} === 'Pending'}"
+                                />
+                                <Button
+                                    id="rejectButton"
+                                    icon="sap-icon://decline"
+                                    tooltip="{i18n>reject}"
+                                    press="onRejectRequest"
+                                    enabled="{= ${status} === 'Pending'}"
+                                />
+                            </HBox>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>
