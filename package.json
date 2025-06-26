@@ -29,20 +29,40 @@
     "undeploy": "cf undeploy ojt_employ --delete-services --delete-service-keys --delete-service-brokers"
   },
   "cds": {
-  "requires": {
-    "auth": {
-  "kind": "xsuaa",
-  "credentials": {
-    "xsappname": "ojt_employ"
-  }
-},
-    "db": {
-      "kind": "hana"
+    "requires": {
+      "auth": {
+        "kind": "basic",
+        "users": {
+          "admin": {
+            "roles": [
+              "admin"
+            ]
+          },
+          "viewer": {
+            "roles": [
+              "viewer"
+            ],
+            "attr": {
+              "email": "john.doe@company.com"
+            }
+          },
+          "*": false
+        }
+      },
+      "[production]": {
+        "auth": {
+          "kind": "xsuaa",
+          "credentials": {
+            "xsappname": "ojt_employ"
+          }
+        }
+      },
+      "db": {
+        "kind": "hana"
+      }
+    },
+    "sql": {
+      "native_hana_associations": false
     }
-  },
-  "sql": {
-    "native_hana_associations": false
   }
-}
-
 }

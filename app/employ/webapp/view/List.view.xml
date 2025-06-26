@@ -1,14 +1,20 @@
 <mvc:View
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
+    xmlns:core="sap.ui.core"
     controllerName="ojt.employ.controller.List"
     displayBlock="true"
 >
     <Page
-        id="_IDGenPage1"
+        id="listPage"
         title="{i18n>listTitle}"
-        showHeader="false"
     >
+        <customHeader>
+            <core:Fragment
+                fragmentName="ojt.employ.fragments.Header"
+                type="XML"
+            />
+        </customHeader>
         <content>
             <Table
                 id="employeeTable"
@@ -21,63 +27,47 @@
                 growing="true"
                 growingThreshold="10"
             >
-                <headerToolbar>
-                    <Toolbar id="_IDGenToolbar">
-                        <Title
-                            id="_IDGenTitle"
-                            text="{i18n>employees}"
-                        />
-                        <ToolbarSpacer id="_IDGenToolbarSpacer" />
-                        <Button
-                            id="_IDGenButton4"
-                            text="{i18n>onboardEmployee}"
-                            icon="sap-icon://add-employee"
-                            press="onNavToAddEmployee"
-                            visible="{user>/isAdmin}"
-                        />
-                    </Toolbar>
-                </headerToolbar>
                 <columns>
-                    <Column id="_IDGenColumn1">
+                    <Column id="fullNameColumn">
                         <header>
                             <Text
-                                id="_IDGenText14"
+                                id="fullNameText"
                                 text="{i18n>fullName}"
                             />
                         </header>
                     </Column>
-                    <Column id="_IDGenColumn2">
+                    <Column id="roleColumn">
                         <header>
                             <Text
-                                id="_IDGenText15"
+                                id="roleText"
                                 text="{i18n>role}"
                             />
                         </header>
                     </Column>
-                    <Column id="_IDGenColumn3">
+                    <Column id="departmentColumn">
                         <header>
                             <Text
-                                id="_IDGenText16"
+                                id="departmentText"
                                 text="{i18n>department}"
                             />
                         </header>
                     </Column>
-                    <Column id="_IDGenColumn4">
+                    <Column id="emailColumn">
                         <header>
                             <Text
-                                id="_IDGenText17"
+                                id="emailText"
                                 text="{i18n>email}"
                             />
                         </header>
                     </Column>
                     <Column
-                        id="_IDGenColumn5"
+                        id="actionsColumn"
                         width="10%"
                         visible="{user>/isAdmin}"
                     >
                         <header>
                             <Text
-                                id="_IDGenText18"
+                                id="actionsText"
                                 text="{i18n>actions}"
                             />
                         </header>
@@ -85,29 +75,29 @@
                 </columns>
                 <items>
                     <ColumnListItem
-                        id="_IDGenColumnListItem"
+                        id="employeeItem"
                         press="onItemPress"
                         type="Navigation"
                     >
                         <cells>
                             <Text
-                                id="_IDGenText4"
+                                id="fullName"
                                 text="{firstName} {lastName}"
                             />
                             <Text
-                                id="_IDGenText5"
+                                id="roleName"
                                 text="{role/name}"
                             />
                             <Text
-                                id="_IDGenText6"
+                                id="departmentName"
                                 text="{department/name}"
                             />
                             <Text
-                                id="_IDGenText7"
+                                id="email"
                                 text="{email}"
                             />
                             <Button
-                                id="_IDGenButton5"
+                                id="deleteButton"
                                 icon="sap-icon://delete"
                                 press="onDelete"
                                 visible="{user>/isAdmin}"

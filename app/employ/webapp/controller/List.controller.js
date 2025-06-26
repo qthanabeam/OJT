@@ -1,3 +1,4 @@
+// /home/user/projects/ojt_employ/app/employ/webapp/controller/List.controller.js
 sap.ui.define(
   [
     "sap/ui/core/mvc/Controller",
@@ -9,22 +10,23 @@ sap.ui.define(
 
     return Controller.extend("ojt.employ.controller.List", {
       onInit: function () {
-        // Ensure OData model is loaded
         var oModel = this.getOwnerComponent().getModel();
         if (!oModel) {
           MessageToast.show("OData model not initialized");
           return;
         }
-        let router = this.getOwnerComponent().getRouter();
-        router.getRoute("list").attachPatternMatched(this._renderDetail, this);
         this.getView().setModel(oModel);
+        var oRouter = this.getOwnerComponent().getRouter();
+        oRouter
+          .getRoute("list")
+          .attachPatternMatched(this._onRouteMatched, this);
       },
 
       _onRouteMatched: function () {
-        let oList = this.byId("employeeTable");
-        let oBinding = oList.getBinding("items");
+        var oList = this.byId("employeeTable");
+        var oBinding = oList.getBinding("items");
         if (oBinding) {
-          oBinding.refresh(); // refetch the data from OData
+          oBinding.refresh(); // Xóa tham số `true`
         }
       },
 
@@ -50,11 +52,11 @@ sap.ui.define(
           return;
         }
 
-        // Delete using OData V4 context
         oContext
           .delete("$auto")
           .then(function () {
             MessageToast.show("Nhân viên đã bị xóa");
+            oModel.refresh(); // Làm mới model sau khi xóa
           })
           .catch(function (oError) {
             MessageToast.show(

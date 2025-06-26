@@ -6,10 +6,15 @@
     controllerName="ojt.employ.controller.Detail"
 >
     <Page
-        id="_IDGenPage2"
+        id="detailPage"
         title="{i18n>detailTitle}"
-        showHeader="false"
     >
+        <customHeader>
+            <core:Fragment
+                fragmentName="ojt.employ.fragments.Header"
+                type="XML"
+            />
+        </customHeader>
         <content>
             <f:SimpleForm
                 id="employeeForm"
@@ -18,149 +23,139 @@
             >
                 <f:content>
                     <Label
-                        id="_IDGenLabel10"
+                        id="firstNameLabel"
                         text="{i18n>firstName}"
                     />
                     <Input
-                        id="_IDGenInput"
+                        id="firstNameInput"
                         value="{firstName}"
                         enabled="{user>/isAdmin}"
                     />
-
                     <Label
-                        id="_IDGenLabel14"
+                        id="lastNameLabel"
                         text="{i18n>lastName}"
                     />
                     <Input
-                        id="_IDGenInput1"
+                        id="lastNameInput"
                         value="{lastName}"
                         enabled="{user>/isAdmin}"
                     />
-
                     <Label
-                        id="_IDGenLabel15"
+                        id="dobLabel"
                         text="{i18n>dateOfBirth}"
                     />
                     <DatePicker
-                        id="_IDGenDatePicker"
-                        value="{path: 'dateOfBirth', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true }}"
+                        id="dobPicker"
+                        value="{path: 'dateOfBirth'}"
                         enabled="{user>/isAdmin}"
                     />
-
                     <Label
-                        id="_IDGenLabel16"
+                        id="genderLabel"
                         text="{i18n>gender}"
                     />
                     <Input
-                        id="_IDGenInput2"
+                        id="genderInput"
                         value="{gender}"
                         enabled="{user>/isAdmin}"
                     />
-
                     <Label
-                        id="_IDGenLabel17"
+                        id="emailLabel"
                         text="{i18n>email}"
                     />
                     <Input
-                        id="_IDGenInput3"
+                        id="emailInput"
                         value="{email}"
                         enabled="{user>/isAdmin}"
                     />
-
                     <Label
-                        id="_IDGenLabel18"
+                        id="hireDateLabel"
                         text="{i18n>hireDate}"
                     />
                     <DatePicker
-                        id="_IDGenDatePicker1"
-                        value="{path: 'hireDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true }}"
+                        id="hireDatePicker"
+                        value="{path: 'hireDate'}"
                         enabled="{user>/isAdmin}"
                     />
-
                     <Label
-                        id="_IDGenLabel19"
+                        id="roleLabel"
                         text="{i18n>role}"
                     />
                     <ComboBox
-                        id="_IDGenComboBox"
+                        id="roleComboBox"
                         items="{/Roles}"
                         selectedKey="{role_ID}"
                         enabled="{user>/isAdmin}"
                     >
                         <core:Item
-                            id="_IDGenItem2"
+                            id="roleItem"
                             key="{ID}"
                             text="{name}"
                         />
                     </ComboBox>
-
                     <Label
-                        id="_IDGenLabel20"
+                        id="departmentLabel"
                         text="{i18n>department}"
                     />
                     <ComboBox
-                        id="_IDGenComboBox1"
+                        id="departmentComboBox"
                         items="{/Departments}"
                         selectedKey="{department_ID}"
                         enabled="{user>/isAdmin}"
                     >
                         <core:Item
-                            id="_IDGenItem3"
+                            id="departmentItem"
                             key="{ID}"
                             text="{name}"
                         />
                     </ComboBox>
-
                     <Label
-                        id="_IDGenLabel21"
+                        id="performanceRatingLabel"
                         text="{i18n>performanceRating}"
                     />
                     <Input
-                        id="_IDGenInput4"
+                        id="performanceRatingInput"
                         value="{performanceRating}"
                         type="Number"
                         enabled="{user>/isAdmin}"
                     />
-
                     <Label
-                        id="_IDGenLabel22"
+                        id="salaryLabel"
                         text="{i18n>salary}"
                     />
                     <Input
-                        id="_IDGenInput5"
+                        id="salaryInput"
                         value="{path: 'salary', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 2 }}"
                         editable="false"
                     />
                 </f:content>
             </f:SimpleForm>
-
             <VBox
-                id="_IDGenVBox1"
+                id="actionButtons"
                 class="sapUiMediumMargin"
             >
                 <Button
-                    id="_IDGenButton"
+                    id="calculateSalaryButton"
                     text="{i18n>calculateSalary}"
                     press="onCalculateSalary"
                     visible="{user>/isAdmin}"
                     type="Emphasized"
                 />
                 <Button
-                    id="_IDGenButton9"
+                    id="saveButton"
                     text="{i18n>save}"
                     press="onSave"
                     visible="{user>/isAdmin}"
                     type="Accept"
                 />
                 <Button
-                    id="_IDGenButton10"
+                    id="deleteButton"
                     text="{i18n>delete}"
                     press="onDelete"
                     visible="{user>/isAdmin}"
                     type="Reject"
                 />
                 <Button
-                    id="_IDGenButton11"
+                    id="manageLeavesButton"
                     text="{i18n>manageLeaves}"
                     press="onManageLeaves"
                 />

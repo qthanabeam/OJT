@@ -2,13 +2,14 @@ namespace ojt_employ;
 
 using { managed, cuid} from '@sap/cds/common';
 
+@readonly
 entity Roles : managed {
   key ID          : UUID;
       name        : String(50);
       baseSalary  : Decimal(10,2);
       allowance   : Decimal(10,2) default 0;
 }
-
+@readonly
 entity Departments : managed {
   key ID          : UUID;
       name        : String(50);

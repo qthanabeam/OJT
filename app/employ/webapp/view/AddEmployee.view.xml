@@ -1,140 +1,40 @@
 <mvc:View
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    xmlns:f="sap.ui.layout.form"
     xmlns:core="sap.ui.core"
     controllerName="ojt.employ.controller.AddEmployee"
+    displayBlock="true"
 >
     <Page
-        id="_IDGenPage"
+        id="addEmployeePage"
         title="{i18n>addEmployeeTitle}"
-        showHeader="false"
+        showNavButton="true"
+        navButtonPress="onNavBack"
     >
+        <customHeader>
+            <core:Fragment
+                fragmentName="ojt.employ.fragments.Header"
+                type="XML"
+            />
+        </customHeader>
         <content>
-            <f:SimpleForm
-                id="addEmployeeForm"
-                editable="true"
-                layout="ColumnLayout"
-                title="{i18n>newEmployee}"
-            >
-                <f:content>
-                    <Label
-                        id="_IDGenLabel"
-                        text="{i18n>firstName}"
-                    />
-                    <Input
-                        id="firstName"
-                        value="{newEmployee>/firstName}"
-                    />
-
-                    <Label
-                        id="_IDGenLabel1"
-                        text="{i18n>lastName}"
-                    />
-                    <Input
-                        id="lastName"
-                        value="{newEmployee>/lastName}"
-                    />
-
-                    <Label
-                        id="_IDGenLabel2"
-                        text="{i18n>dateOfBirth}"
-                    />
-                    <DatePicker
-                        id="dateOfBirth"
-                        valueFormat="yyyy-MM-dd"
-                        value="{path: 'newEmployee>/dateOfBirth'}"
-                    />
-
-                    <Label
-                        id="_IDGenLabel3"
-                        text="{i18n>gender}"
-                    />
-                    <Input
-                        id="gender"
-                        value="{newEmployee>/gender}"
-                    />
-
-                    <Label
-                        id="_IDGenLabel4"
-                        text="{i18n>email}"
-                    />
-                    <Input
-                        id="email"
-                        value="{newEmployee>/email}"
-                    />
-
-                    <Label
-                        id="_IDGenLabel5"
-                        text="{i18n>hireDate}"
-                    />
-                    <DatePicker
-                        id="hireDate"
-                        valueFormat="yyyy-MM-dd"
-                        value="{path: 'newEmployee>/hireDate'}"
-                    />
-
-                    <Label
-                        id="_IDGenLabel6"
-                        text="{i18n>role}"
-                    />
-                    <ComboBox
-                        id="roleComboBox"
-                        items="{/Roles}"
-                        selectedKey="{newEmployee>/role_ID}"
-                    >
-                        <core:Item
-                            id="_IDGenItem"
-                            key="{ID}"
-                            text="{name}"
-                        />
-                    </ComboBox>
-
-                    <Label
-                        id="_IDGenLabel7"
-                        text="{i18n>department}"
-                    />
-                    <ComboBox
-                        id="departmentComboBox"
-                        items="{/Departments}"
-                        selectedKey="{newEmployee>/department_ID}"
-                    >
-                        <core:Item
-                            id="_IDGenItem1"
-                            key="{ID}"
-                            text="{name}"
-                        />
-                    </ComboBox>
-
-                    <Label
-                        id="_IDGenLabel8"
-                        text="{i18n>performanceRating}"
-                    />
-                    <Input
-                        id="performanceRating"
-                        value="{newEmployee>/performanceRating}"
-                        type="Number"
-                    />
-                </f:content>
-            </f:SimpleForm>
-
-            <VBox
-                id="_IDGenVBox"
+            <core:Fragment
+                fragmentName="ojt.employ.fragments.AddEmployeeForm"
+                type="XML"
+            />
+            <Button
+                id="submitButton"
+                text="{i18n>submit}"
+                type="Accept"
+                press="onSubmitNewEmployee"
                 class="sapUiMediumMargin"
-            >
-                <Button
-                    id="_IDGenButton3"
-                    text="{i18n>submit}"
-                    press="onSubmitNewEmployee"
-                    type="Accept"
-                />
-                <Button
-                    id="_IDGenButton8"
-                    text="{i18n>cancel}"
-                    press="onCancel"
-                    type="Reject"
-                />
-            </VBox>
+            />
+            <Button
+                id="cancelButton"
+                text="{i18n>cancel}"
+                press="onCancel"
+                class="sapUiMediumMargin"
+            />
         </content>
     </Page>
 </mvc:View>

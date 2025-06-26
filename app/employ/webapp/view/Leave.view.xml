@@ -1,57 +1,27 @@
 <mvc:View
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
     controllerName="ojt.employ.controller.Leave"
     displayBlock="true"
 >
     <Page
         id="leavePage"
         title="{i18n>leaveTitle}"
-        showHeader="false"
     >
+        <customHeader>
+            <core:Fragment
+                fragmentName="ojt.employ.fragments.Header"
+                type="XML"
+            />
+        </customHeader>
         <content>
-            <f:SimpleForm
-                id="leaveForm"
-                editable="true"
-                layout="ColumnLayout"
-                title="{i18n>newLeaveRequest}"
-                visible="{user>/isAdmin}"
-            >
-                <f:content>
-                    <Label
-                        id="_IDGenLabel11"
-                        text="{i18n>startDate}"
-                    />
-                    <DatePicker
-                        id="startDate"
-                        valueFormat="yyyy-MM-dd"
-                        value="{path: 'newLeave>/startDate'}"
-                    />
-                    <Label
-                        id="_IDGenLabel12"
-                        text="{i18n>endDate}"
-                    />
-                    <DatePicker
-                        id="endDate"
-                        valueFormat="yyyy-MM-dd"
-                        value="{path: 'newLeave>/endDate'}"
-                    />
-                    <Label
-                        id="_IDGenLabel13"
-                        text="{i18n>reason}"
-                    />
-                    <Input
-                        id="reason"
-                        value="{newLeave>/reason}"
-                    />
-                </f:content>
-            </f:SimpleForm>
             <Button
                 id="addLeaveButton"
                 text="{i18n>addLeaveRequest}"
                 press="onAddLeaveRequest"
                 visible="{user>/isAdmin}"
+                class="sapUiMediumMarginBottom"
             />
             <Table
                 id="leaveTable"
@@ -65,91 +35,91 @@
                 growingThreshold="10"
             >
                 <headerToolbar>
-                    <Toolbar id="_IDGenToolbar1">
+                    <Toolbar id="leaveTableToolbar">
                         <Title
-                            id="_IDGenTitle1"
+                            id="leaveTableTitle"
                             text="{i18n>leaveRequests}"
                         />
                     </Toolbar>
                 </headerToolbar>
                 <columns>
-                    <Column id="_IDGenColumn">
+                    <Column id="startDateColumn">
                         <header>
                             <Text
-                                id="_IDGenText"
+                                id="startDateText"
                                 text="{i18n>startDate}"
                             />
                         </header>
                     </Column>
-                    <Column id="_IDGenColumn6">
+                    <Column id="endDateColumn">
                         <header>
                             <Text
-                                id="_IDGenText1"
+                                id="endDateText"
                                 text="{i18n>endDate}"
                             />
                         </header>
                     </Column>
-                    <Column id="_IDGenColumn7">
+                    <Column id="statusColumn">
                         <header>
                             <Text
-                                id="_IDGenText2"
+                                id="statusText"
                                 text="{i18n>status}"
                             />
                         </header>
                     </Column>
-                    <Column id="_IDGenColumn8">
+                    <Column id="reasonColumn">
                         <header>
                             <Text
-                                id="_IDGenText3"
+                                id="reasonText"
                                 text="{i18n>reason}"
                             />
                         </header>
                     </Column>
                     <Column
-                        id="_IDGenColumn9"
+                        id="actionsColumn"
                         width="15%"
                         visible="{user>/isAdmin}"
                     >
                         <header>
                             <Text
-                                id="_IDGenText8"
+                                id="actionsText"
                                 text="{i18n>actions}"
                             />
                         </header>
                     </Column>
                 </columns>
                 <items>
-                    <ColumnListItem id="_IDGenColumnListItem1">
+                    <ColumnListItem id="leaveItem">
                         <cells>
                             <Text
-                                id="_IDGenText9"
+                                id="startDate"
                                 text="{path: 'startDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' }}"
                             />
                             <Text
-                                id="_IDGenText10"
+                                id="endDate"
                                 text="{path: 'endDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' }}"
                             />
                             <Text
-                                id="_IDGenText11"
+                                id="status"
                                 text="{status}"
                             />
                             <Text
-                                id="_IDGenText12"
+                                id="reason"
                                 text="{reason}"
                             />
                             <HBox
-                                id="_IDGenHBox"
+                                id="actionButtons"
                                 visible="{user>/isAdmin}"
                             >
                                 <Button
-                                    id="_IDGenButton6"
+                                    id="approveButton"
                                     icon="sap-icon://accept"
                                     tooltip="{i18n>approve}"
                                     press="onApproveRequest"
                                     enabled="{= ${status} === 'Pending'}"
                                 />
                                 <Button
-                                    id="_IDGenButton7"
+                                    id="rejectButton"
                                     icon="sap-icon://decline"
                                     tooltip="{i18n>reject}"
                                     press="onRejectRequest"
