@@ -5,13 +5,13 @@ Accept: application/json
 ###
 
 ### Get one employee by ID
-GET http://localhost:4004/odata/v4/employee/Employees(e1a9d9a0-8dfb-49a9-a321-111122223333)
+GET http://localhost:4004/odata/v4/employee/userInfo
 Accept: application/json
 
 ###
 
 ### Get all departments
-GET http://localhost:4004/odata/v4/employee/Departments
+GET http://localhost:4004/odata/v4/employee/userInfo
 Accept: application/json
 
 ###

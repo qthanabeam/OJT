@@ -19,10 +19,10 @@
         }
       },
       "user-api": {
-        "uri": "/user-info",
+        "uri": "/employee/userInfo/",
         "type": "OData",
         "settings": {
-          "odataVersion": "2.0"
+          "odataVersion": "4.0"
         }
       }
     }
@@ -42,7 +42,8 @@
       "libs": {
         "sap.m": {},
         "sap.ui.core": {},
-        "sap.ui.layout": {}
+        "sap.ui.layout": {},
+        "sap.f": {}
       }
     },
     "contentDensities": {

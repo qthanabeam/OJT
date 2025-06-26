@@ -8,7 +8,7 @@ service EmployeeService {
   entity LeaveRequests as projection on ojt_employ.LeaveRequests;
 
   action calculateSalary(employeeID : UUID) returns Decimal(10,2);
-  action userInfo() returns {
+  function userInfo() returns {
     id: String;
     name: String;
     email: String;

@@ -1,14 +1,14 @@
-// /home/user/projects/ojt_employ/app/employ/webapp/controller/List.controller.js
 sap.ui.define(
   [
-    "sap/ui/core/mvc/Controller",
+    "ojt/employ/controller/BaseController",
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageToast",
+    "sap/m/MessageBox",
   ],
-  function (Controller, JSONModel, MessageToast) {
+  function (BaseController, JSONModel, MessageToast, MessageBox) {
     "use strict";
 
-    return Controller.extend("ojt.employ.controller.List", {
+    return BaseController.extend("ojt.employ.controller.List", {
       onInit: function () {
         var oModel = this.getOwnerComponent().getModel();
         if (!oModel) {
@@ -16,6 +16,7 @@ sap.ui.define(
           return;
         }
         this.getView().setModel(oModel);
+
         var oRouter = this.getOwnerComponent().getRouter();
         oRouter
           .getRoute("list")
@@ -26,7 +27,7 @@ sap.ui.define(
         var oList = this.byId("employeeTable");
         var oBinding = oList.getBinding("items");
         if (oBinding) {
-          oBinding.refresh(); // Xóa tham số `true`
+          oBinding.refresh();
         }
       },
 
@@ -35,11 +36,6 @@ sap.ui.define(
         var oRouter = this.getOwnerComponent().getRouter();
         var sEmployeeId = oItem.getBindingContext().getProperty("ID");
         oRouter.navTo("detail", { employeeId: sEmployeeId });
-      },
-
-      onNavToAddEmployee: function () {
-        var oRouter = this.getOwnerComponent().getRouter();
-        oRouter.navTo("addEmployee");
       },
 
       onDelete: function (oEvent) {
@@ -52,17 +48,33 @@ sap.ui.define(
           return;
         }
 
-        oContext
-          .delete("$auto")
-          .then(function () {
-            MessageToast.show("Nhân viên đã bị xóa");
-            oModel.refresh(); // Làm mới model sau khi xóa
-          })
-          .catch(function (oError) {
-            MessageToast.show(
-              "Lỗi khi xóa nhân viên: " + (oError.message || "Unknown error")
-            );
-          });
+        var sEmployeeName =
+          oContext.getProperty("firstName") +
+          " " +
+          oContext.getProperty("lastName");
+
+        MessageBox.confirm(
+          "Bạn có chắc muốn xóa nhân viên " + sEmployeeName + "?",
+          {
+            title: "Xác nhận xóa",
+            onClose: function (oAction) {
+              if (oAction === MessageBox.Action.OK) {
+                oContext
+                  .delete("$auto")
+                  .then(function () {
+                    MessageToast.show("Nhân viên đã bị xóa");
+                    oModel.refresh();
+                  })
+                  .catch(function (oError) {
+                    MessageToast.show(
+                      "Lỗi khi xóa nhân viên: " +
+                        (oError.message || "Unknown error")
+                    );
+                  });
+              }
+            },
+          }
+        );
       },
     });
   }

@@ -16,6 +16,10 @@
             />
         </customHeader>
         <content>
+            <core:Fragment
+                fragmentName="ojt.employ.fragments.LeaveRequestForm"
+                type="XML"
+            />
             <Button
                 id="addLeaveButton"
                 text="{i18n>addLeaveRequest}"

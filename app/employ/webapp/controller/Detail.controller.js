@@ -1,9 +1,13 @@
 sap.ui.define(
-  ["sap/ui/core/mvc/Controller", "sap/m/MessageToast"],
-  function (Controller, MessageToast) {
+  [
+    "ojt/employ/controller/BaseController",
+    "sap/m/MessageToast",
+    "sap/m/MessageBox",
+  ],
+  function (BaseController, MessageToast, MessageBox) {
     "use strict";
 
-    return Controller.extend("ojt.employ.controller.Detail", {
+    return BaseController.extend("ojt.employ.controller.Detail", {
       onInit: function () {
         var oRouter = this.getOwnerComponent().getRouter();
         oRouter
@@ -65,9 +69,14 @@ sap.ui.define(
           return;
         }
 
-        // Get values from form
-        var oRoleComboBox = this.byId("_IDGenComboBox");
-        var oDeptComboBox = this.byId("_IDGenComboBox1");
+        // Fixed: Use correct IDs from the view
+        var oRoleComboBox = this.byId("roleComboBox");
+        var oDeptComboBox = this.byId("departmentComboBox");
+
+        if (!oRoleComboBox || !oDeptComboBox) {
+          MessageToast.show("Không thể tìm thấy ComboBox controls");
+          return;
+        }
 
         var sSelectedRoleKey = oRoleComboBox.getSelectedKey();
         var sSelectedDeptKey = oDeptComboBox.getSelectedKey();
@@ -103,18 +112,26 @@ sap.ui.define(
           return;
         }
 
-        // Delete using OData V4 context
-        oContext
-          .delete("$auto")
-          .then(function () {
-            MessageToast.show("Nhân viên đã bị xóa");
-            oRouter.navTo("list");
-          })
-          .catch(function (oError) {
-            MessageToast.show(
-              "Lỗi khi xóa nhân viên: " + (oError.message || "Unknown error")
-            );
-          });
+        MessageBox.confirm("Bạn có chắc muốn xóa nhân viên này?", {
+          title: "Xác nhận xóa",
+          onClose: function (oAction) {
+            if (oAction === MessageBox.Action.OK) {
+              // Delete using OData V4 context
+              oContext
+                .delete("$auto")
+                .then(function () {
+                  MessageToast.show("Nhân viên đã bị xóa");
+                  oRouter.navTo("list");
+                })
+                .catch(function (oError) {
+                  MessageToast.show(
+                    "Lỗi khi xóa nhân viên: " +
+                      (oError.message || "Unknown error")
+                  );
+                });
+            }
+          },
+        });
       },
 
       onManageLeaves: function () {
