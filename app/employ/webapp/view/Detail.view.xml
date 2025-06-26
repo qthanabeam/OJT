@@ -130,7 +130,7 @@
                 </f:content>
             </f:SimpleForm>
             <VBox
-                id="actionButtons"
+                id="_IDGenVBox"
                 class="sapUiMediumMargin"
             >
                 <Button
@@ -148,7 +148,7 @@
                     type="Accept"
                 />
                 <Button
-                    id="deleteButton"
+                    id="_IDGenButton1"
                     text="{i18n>delete}"
                     press="onDelete"
                     visible="{user>/isAdmin}"

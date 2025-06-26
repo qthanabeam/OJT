@@ -11,91 +11,91 @@
     >
         <f:content>
             <Label
-                id="firstNameLabel"
+                id="_IDGenLabel"
                 text="{i18n>firstName}"
             />
             <Input
-                id="firstNameInput"
+                id="_IDGenInput1"
                 value="{newEmployee>/firstName}"
             />
             <Label
-                id="lastNameLabel"
+                id="_IDGenLabel1"
                 text="{i18n>lastName}"
             />
             <Input
-                id="lastNameInput"
+                id="_IDGenInput2"
                 value="{newEmployee>/lastName}"
             />
             <Label
-                id="dobLabel"
+                id="_IDGenLabel2"
                 text="{i18n>dateOfBirth}"
             />
             <DatePicker
-                id="dobPicker"
+                id="_IDGenDatePicker"
                 valueFormat="yyyy-MM-dd"
                 value="{path: 'newEmployee>/dateOfBirth'}"
             />
             <Label
-                id="genderLabel"
+                id="_IDGenLabel3"
                 text="{i18n>gender}"
             />
             <Input
-                id="genderInput"
+                id="_IDGenInput3"
                 value="{newEmployee>/gender}"
             />
             <Label
-                id="emailLabel"
+                id="_IDGenLabel4"
                 text="{i18n>email}"
             />
             <Input
-                id="emailInput"
+                id="_IDGenInput4"
                 value="{newEmployee>/email}"
             />
             <Label
-                id="hireDateLabel"
+                id="_IDGenLabel5"
                 text="{i18n>hireDate}"
             />
             <DatePicker
-                id="hireDatePicker"
+                id="_IDGenDatePicker1"
                 valueFormat="yyyy-MM-dd"
                 value="{path: 'newEmployee>/hireDate'}"
             />
             <Label
-                id="roleLabel"
+                id="_IDGenLabel6"
                 text="{i18n>role}"
             />
             <ComboBox
-                id="roleComboBox"
+                id="_IDGenComboBox"
                 items="{/Roles}"
                 selectedKey="{newEmployee>/role_ID}"
             >
                 <core:Item
-                    id="roleItem"
+                    id="_IDGenItem"
                     key="{ID}"
                     text="{name}"
                 />
             </ComboBox>
             <Label
-                id="departmentLabel"
+                id="_IDGenLabel7"
                 text="{i18n>department}"
             />
             <ComboBox
-                id="departmentComboBox"
+                id="_IDGenComboBox1"
                 items="{/Departments}"
                 selectedKey="{newEmployee>/department_ID}"
             >
                 <core:Item
-                    id="departmentItem"
+                    id="_IDGenItem1"
                     key="{ID}"
                     text="{name}"
                 />
             </ComboBox>
             <Label
-                id="performanceRatingLabel"
+                id="_IDGenLabel8"
                 text="{i18n>performanceRating}"
             />
             <Input
-                id="performanceRatingInput"
+                id="_IDGenInput5"
                 value="{newEmployee>/performanceRating}"
                 type="Number"
             />

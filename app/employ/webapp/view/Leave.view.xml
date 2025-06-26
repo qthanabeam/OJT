@@ -76,13 +76,13 @@
                         </header>
                     </Column>
                     <Column
-                        id="actionsColumn"
+                        id="_IDGenColumn1"
                         width="15%"
                         visible="{user>/isAdmin}"
                     >
                         <header>
                             <Text
-                                id="actionsText"
+                                id="_IDGenText"
                                 text="{i18n>actions}"
                             />
                         </header>
