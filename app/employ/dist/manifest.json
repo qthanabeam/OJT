@@ -74,6 +74,7 @@
       },
       "user": {
         "type": "sap.ui.model.json.JSONModel",
+        "uri": "",
         "settings": {}
       }
     },
@@ -91,30 +92,22 @@
         {
           "pattern": "",
           "name": "list",
-          "target": [
-            "list"
-          ]
+          "target": ["list"]
         },
         {
           "pattern": "employee/{employeeId}",
           "name": "detail",
-          "target": [
-            "detail"
-          ]
+          "target": ["detail"]
         },
         {
           "pattern": "leave/{employeeId}",
           "name": "leave",
-          "target": [
-            "leave"
-          ]
+          "target": ["leave"]
         },
         {
           "pattern": "addEmployee",
           "name": "addEmployee",
-          "target": [
-            "addEmployee"
-          ]
+          "target": ["addEmployee"]
         }
       ],
       "targets": {

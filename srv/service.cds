@@ -12,8 +12,7 @@ service EmployeeService {
 
   function userInfo()                                         returns {
     id     : String;
-    name   : String;
-    email  : String;
-    scopes : array of String;
+    roles : many String;
   };
+  
 }
