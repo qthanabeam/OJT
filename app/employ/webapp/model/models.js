@@ -13,48 +13,23 @@ sap.ui.define(
         oModel.setDefaultBindingMode("OneWay");
         return oModel;
       },
-
-      /**
-       * Fetches current user info via OData function `userInfo()`
-       * @returns {Promise<JSONModel>} JSONModel with isAdmin, id, and roles
-       */
       getCurrentUser: async function () {
+        // bind action
         const oModel = new sap.ui.model.odata.v4.ODataModel({
           serviceUrl: "/odata/v4/employee/",
           synchronizationMode: "None",
+          operationMode: "Server",
         });
-
-        const oContextBinding = oModel.bindContext("/userInfo(...)", null, {
-          $$groupId: "$auto", // <== Bắt buộc cho deferred binding
-          $$updateGroupId: "userInfo", // <== Bắt buộc để gọi được function
+        // get current user
+        let oAction = oModel.bindContext("/userInfo(...)");
+        let isAdmin;
+        await oAction.invoke().catch((err) => {
+          console.log(err);
         });
-
-        try {
-          await oContextBinding.execute(); // <== Gọi execute() thay vì invoke()
-
-          const oContext = oContextBinding.getBoundContext();
-          if (!oContext) {
-            console.error("No bound context returned from userInfo()");
-            console.log(oContext);
-            return new JSONModel({ isAdmin: true, id: null, roles: [] });
-          }
-
-          const oResult = oContext.getObject();
-          console.log("User Info Result:", oResult);
-
-          const roles = oResult?.roles || [];
-          const isAdmin =
-            roles.includes("Admin") || roles.includes("ojt_employ.Admin");
-
-          return new JSONModel({
-            isAdmin: isAdmin,
-            id: oResult?.id || null,
-            roles: roles,
-          });
-        } catch (err) {
-          console.error("Error invoking userInfo():", err);
-          return new JSONModel({ isAdmin: false, id: null, roles: [] });
-        }
+        const oResult = oAction.getBoundContext().getObject();
+        console.log(oResult);
+        isAdmin = oResult.roles.hasOwnProperty("Admin");
+        return new JSONModel({ isAdmin });
       },
     };
   }
