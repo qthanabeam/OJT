@@ -10,6 +10,24 @@ module.exports = cds.service.impl(async function () {
     return Math.floor((today - hire) / (1000 * 60 * 60 * 24 * 365));
   };
 
+  // Update leave request status
+  this.on("updateLeaveStatus", async (req) => {
+    const { leaveID, status } = req.data;
+    const validStatuses = ["Pending", "Approved", "Rejected"];
+    if (!validStatuses.includes(status)) {
+      req.error(400, "Invalid status value");
+    }
+
+    const updated = await UPDATE(LeaveRequests)
+      .set({ status })
+      .where({ ID: leaveID });
+
+    if (updated === 0) {
+      req.error(404, "Leave request not found");
+    }
+
+    return "Status updated successfully";
+  });
   // Calculate salary
   this.on("calculateSalary", async (req) => {
     const { employeeID } = req.data;
@@ -38,18 +56,22 @@ module.exports = cds.service.impl(async function () {
   });
 
   // Restrict access based on roles
-  // this.before(['CREATE', 'UPDATE', 'DELETE'], [Employees, LeaveRequests], async (req) => {
-  //   const user = req.user;
-  //   if (!user.is('Admin')) {
-  //     console.log(user);
-  //     req.error(403, 'Admin role required for this operation');
-  //   }
-  // });
+  this.before(
+    ["CREATE", "UPDATE", "DELETE"],
+    [Employees, LeaveRequests],
+    async (req) => {
+      const user = req.user;
+      if (!user.is("Admin")) {
+        console.log(user);
+        req.error(403, "Admin role required for this operation");
+      }
+    }
+  );
 
-  // // Restrict LeaveRequests updates to Admins
-  // this.before('UPDATE', LeaveRequests, async (req) => {
-  //   if (!user.is('Admin')) {
-  //     req.error(403, 'Only Admins can approve/reject leave requests');
-  //   }
-  // });
+  // Restrict LeaveRequests updates to Admins
+  this.before("UPDATE", LeaveRequests, async (req) => {
+    if (!user.is("Admin")) {
+      req.error(403, "Only Admins can approve/reject leave requests");
+    }
+  });
 });

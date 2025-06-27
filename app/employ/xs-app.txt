@@ -1,12 +1,12 @@
 {
-  "welcomeFile": "/ojtemploy/index.html",
+  "welcomeFile": "/index.html",
   "authenticationMethod": "route",
   "routes": [
     {
       "source": "^/odata/(.*)$",
       "target": "/odata/$1",
-      "destination": "srv-api",
-      "authenticationType": "xsuaa",
+      "destination": "employee-management-srv-api",: "xsuaa",
+      "authenticationType"
       "csrfProtection": false
     },
     {
