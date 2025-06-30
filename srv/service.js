@@ -28,6 +28,12 @@ module.exports = cds.service.impl(async function () {
 
     return "Status updated successfully";
   });
+   this.on("userInfo", async (req) => {
+     console.log("userInfo called by:", req.user);
+     if (!req.user) return {};
+     const { id, roles } = req.user;
+     return { id, roles };
+   });
   // Calculate salary
   this.on("calculateSalary", async (req) => {
     const { employeeID } = req.data;
