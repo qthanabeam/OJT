@@ -10,7 +10,7 @@
         <ToolbarSpacer id="toolbarSpacer" />
         <Text
             id="userInfo"
-            text="{i18n>welcomeMessage} {user>/userName} ({user>/role})"
+            text="{i18n>welcomeMessage} {user>/id} ({user>/role})"
         />
         <Button
             id="listButton"
